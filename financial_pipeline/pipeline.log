@@ -1,0 +1,144 @@
+2026-02-17 15:16:01,578 - main - INFO - main:31 - Starting Financial Data Pipeline...
+2026-02-17 15:16:01,579 - main - INFO - main:47 - --- Stage 1: Ingestion ---
+2026-02-17 15:16:01,580 - src.ingestion.alpha_vantage_client - INFO - alpha_vantage_client:34 - Fetching data for AAPL, attempt 1
+2026-02-17 15:16:08,518 - src.ingestion.alpha_vantage_client - INFO - alpha_vantage_client:90 - Successfully saved raw data for AAPL to C:\Users\SAKSHI VERMA\Documents\Data pipeline-stocks,crypto\financial_pipeline\data\raw\alpha_vantage\symbol=AAPL\date=2026-02-17\data.json
+2026-02-17 15:16:08,519 - src.ingestion.alpha_vantage_client - INFO - alpha_vantage_client:34 - Fetching data for MSFT, attempt 1
+2026-02-17 15:16:11,576 - src.ingestion.alpha_vantage_client - INFO - alpha_vantage_client:90 - Successfully saved raw data for MSFT to C:\Users\SAKSHI VERMA\Documents\Data pipeline-stocks,crypto\financial_pipeline\data\raw\alpha_vantage\symbol=MSFT\date=2026-02-17\data.json
+2026-02-17 15:16:11,577 - src.ingestion.alpha_vantage_client - INFO - alpha_vantage_client:34 - Fetching data for TSLA, attempt 1
+2026-02-17 15:16:12,833 - src.ingestion.alpha_vantage_client - INFO - alpha_vantage_client:90 - Successfully saved raw data for TSLA to C:\Users\SAKSHI VERMA\Documents\Data pipeline-stocks,crypto\financial_pipeline\data\raw\alpha_vantage\symbol=TSLA\date=2026-02-17\data.json
+2026-02-17 15:16:12,835 - src.ingestion.alpha_vantage_client - INFO - alpha_vantage_client:34 - Fetching data for GOOGL, attempt 1
+2026-02-17 15:16:17,206 - src.ingestion.alpha_vantage_client - INFO - alpha_vantage_client:90 - Successfully saved raw data for GOOGL to C:\Users\SAKSHI VERMA\Documents\Data pipeline-stocks,crypto\financial_pipeline\data\raw\alpha_vantage\symbol=GOOGL\date=2026-02-17\data.json
+2026-02-17 15:16:17,208 - src.ingestion.alpha_vantage_client - INFO - alpha_vantage_client:34 - Fetching data for AMZN, attempt 1
+2026-02-17 15:16:19,794 - src.ingestion.alpha_vantage_client - INFO - alpha_vantage_client:90 - Successfully saved raw data for AMZN to C:\Users\SAKSHI VERMA\Documents\Data pipeline-stocks,crypto\financial_pipeline\data\raw\alpha_vantage\symbol=AMZN\date=2026-02-17\data.json
+2026-02-17 15:16:19,799 - main - INFO - main:60 - --- Stage 2: Cleaning ---
+2026-02-17 15:16:19,812 - src.processing.cleaner - WARNING - cleaner:39 - Skipping Invalid JSON format in C:\Users\SAKSHI VERMA\Documents\Data pipeline-stocks,crypto\financial_pipeline\data\raw\alpha_vantage\symbol=TSLA\date=2026-02-17\data.json
+2026-02-17 15:16:19,815 - src.processing.cleaner - WARNING - cleaner:39 - Skipping Invalid JSON format in C:\Users\SAKSHI VERMA\Documents\Data pipeline-stocks,crypto\financial_pipeline\data\raw\alpha_vantage\symbol=MSFT\date=2026-02-17\data.json
+2026-02-17 15:16:19,817 - src.processing.cleaner - WARNING - cleaner:39 - Skipping Invalid JSON format in C:\Users\SAKSHI VERMA\Documents\Data pipeline-stocks,crypto\financial_pipeline\data\raw\alpha_vantage\symbol=GOOGL\date=2026-02-17\data.json
+2026-02-17 15:16:19,818 - src.processing.cleaner - WARNING - cleaner:39 - Skipping Invalid JSON format in C:\Users\SAKSHI VERMA\Documents\Data pipeline-stocks,crypto\financial_pipeline\data\raw\alpha_vantage\symbol=AMZN\date=2026-02-17\data.json
+2026-02-17 15:16:19,820 - src.processing.cleaner - WARNING - cleaner:39 - Skipping Invalid JSON format in C:\Users\SAKSHI VERMA\Documents\Data pipeline-stocks,crypto\financial_pipeline\data\raw\alpha_vantage\symbol=AAPL\date=2026-02-17\data.json
+2026-02-17 15:16:19,820 - src.processing.cleaner - WARNING - cleaner:61 - No data found in raw directory.
+2026-02-17 15:16:19,827 - src.processing.cleaner - WARNING - cleaner:122 - No data to clean.
+2026-02-17 15:16:19,828 - main - INFO - main:65 - --- Stage 3: Transformation ---
+2026-02-17 15:16:19,828 - src.processing.transformer - WARNING - transformer:14 - Input path C:\Users\SAKSHI VERMA\Documents\Data pipeline-stocks,crypto\financial_pipeline\data\processed\cleaned_data.parquet does not exist.
+2026-02-17 15:16:19,830 - src.processing.transformer - WARNING - transformer:61 - No data to transform.
+2026-02-17 15:16:19,830 - main - INFO - main:70 - --- Stage 4: Analysis ---
+2026-02-17 15:16:19,831 - src.analysis.statistics_engine - WARNING - statistics_engine:13 - Input path C:\Users\SAKSHI VERMA\Documents\Data pipeline-stocks,crypto\financial_pipeline\data\processed\analytics_data.parquet does not exist.
+2026-02-17 15:16:19,832 - src.analysis.statistics_engine - WARNING - statistics_engine:55 - No data for statistics.
+2026-02-17 15:16:19,832 - main - INFO - main:74 - Pipeline completed successfully.
+2026-02-17 15:17:27,412 - main - INFO - main:31 - Starting Financial Data Pipeline...
+2026-02-17 15:17:27,413 - main - INFO - main:47 - --- Stage 1: Ingestion ---
+2026-02-17 15:17:27,413 - src.ingestion.alpha_vantage_client - INFO - alpha_vantage_client:34 - Fetching data for AAPL, attempt 1
+2026-02-17 15:17:29,721 - src.ingestion.alpha_vantage_client - INFO - alpha_vantage_client:90 - Successfully saved raw data for AAPL to C:\Users\SAKSHI VERMA\Documents\Data pipeline-stocks,crypto\financial_pipeline\data\raw\alpha_vantage\symbol=AAPL\date=2026-02-17\data.json
+2026-02-17 15:17:29,721 - src.ingestion.alpha_vantage_client - INFO - alpha_vantage_client:34 - Fetching data for MSFT, attempt 1
+2026-02-17 15:17:30,939 - src.ingestion.alpha_vantage_client - INFO - alpha_vantage_client:90 - Successfully saved raw data for MSFT to C:\Users\SAKSHI VERMA\Documents\Data pipeline-stocks,crypto\financial_pipeline\data\raw\alpha_vantage\symbol=MSFT\date=2026-02-17\data.json
+2026-02-17 15:17:30,940 - src.ingestion.alpha_vantage_client - INFO - alpha_vantage_client:34 - Fetching data for TSLA, attempt 1
+2026-02-17 15:17:33,104 - src.ingestion.alpha_vantage_client - INFO - alpha_vantage_client:90 - Successfully saved raw data for TSLA to C:\Users\SAKSHI VERMA\Documents\Data pipeline-stocks,crypto\financial_pipeline\data\raw\alpha_vantage\symbol=TSLA\date=2026-02-17\data.json
+2026-02-17 15:17:33,108 - src.ingestion.alpha_vantage_client - INFO - alpha_vantage_client:34 - Fetching data for GOOGL, attempt 1
+2026-02-17 15:17:40,360 - src.ingestion.alpha_vantage_client - INFO - alpha_vantage_client:90 - Successfully saved raw data for GOOGL to C:\Users\SAKSHI VERMA\Documents\Data pipeline-stocks,crypto\financial_pipeline\data\raw\alpha_vantage\symbol=GOOGL\date=2026-02-17\data.json
+2026-02-17 15:17:40,360 - src.ingestion.alpha_vantage_client - INFO - alpha_vantage_client:34 - Fetching data for AMZN, attempt 1
+2026-02-17 15:17:43,500 - src.ingestion.alpha_vantage_client - INFO - alpha_vantage_client:90 - Successfully saved raw data for AMZN to C:\Users\SAKSHI VERMA\Documents\Data pipeline-stocks,crypto\financial_pipeline\data\raw\alpha_vantage\symbol=AMZN\date=2026-02-17\data.json
+2026-02-17 15:17:43,501 - main - INFO - main:60 - --- Stage 2: Cleaning ---
+2026-02-17 15:17:43,508 - src.processing.cleaner - WARNING - cleaner:39 - Skipping Invalid JSON format in C:\Users\SAKSHI VERMA\Documents\Data pipeline-stocks,crypto\financial_pipeline\data\raw\alpha_vantage\symbol=TSLA\date=2026-02-17\data.json
+2026-02-17 15:17:43,511 - src.processing.cleaner - WARNING - cleaner:39 - Skipping Invalid JSON format in C:\Users\SAKSHI VERMA\Documents\Data pipeline-stocks,crypto\financial_pipeline\data\raw\alpha_vantage\symbol=MSFT\date=2026-02-17\data.json
+2026-02-17 15:17:43,514 - src.processing.cleaner - WARNING - cleaner:39 - Skipping Invalid JSON format in C:\Users\SAKSHI VERMA\Documents\Data pipeline-stocks,crypto\financial_pipeline\data\raw\alpha_vantage\symbol=GOOGL\date=2026-02-17\data.json
+2026-02-17 15:17:43,521 - src.processing.cleaner - WARNING - cleaner:39 - Skipping Invalid JSON format in C:\Users\SAKSHI VERMA\Documents\Data pipeline-stocks,crypto\financial_pipeline\data\raw\alpha_vantage\symbol=AMZN\date=2026-02-17\data.json
+2026-02-17 15:17:43,525 - src.processing.cleaner - WARNING - cleaner:39 - Skipping Invalid JSON format in C:\Users\SAKSHI VERMA\Documents\Data pipeline-stocks,crypto\financial_pipeline\data\raw\alpha_vantage\symbol=AAPL\date=2026-02-17\data.json
+2026-02-17 15:17:43,526 - src.processing.cleaner - WARNING - cleaner:61 - No data found in raw directory.
+2026-02-17 15:17:43,529 - src.processing.cleaner - WARNING - cleaner:122 - No data to clean.
+2026-02-17 15:17:43,530 - main - INFO - main:65 - --- Stage 3: Transformation ---
+2026-02-17 15:17:43,531 - src.processing.transformer - WARNING - transformer:14 - Input path C:\Users\SAKSHI VERMA\Documents\Data pipeline-stocks,crypto\financial_pipeline\data\processed\cleaned_data.parquet does not exist.
+2026-02-17 15:17:43,532 - src.processing.transformer - WARNING - transformer:61 - No data to transform.
+2026-02-17 15:17:43,532 - main - INFO - main:70 - --- Stage 4: Analysis ---
+2026-02-17 15:17:43,533 - src.analysis.statistics_engine - WARNING - statistics_engine:13 - Input path C:\Users\SAKSHI VERMA\Documents\Data pipeline-stocks,crypto\financial_pipeline\data\processed\analytics_data.parquet does not exist.
+2026-02-17 15:17:43,534 - src.analysis.statistics_engine - WARNING - statistics_engine:55 - No data for statistics.
+2026-02-17 15:17:43,534 - main - INFO - main:74 - Pipeline completed successfully.
+2026-02-17 15:19:17,468 - main - INFO - main:31 - Starting Financial Data Pipeline...
+2026-02-17 15:19:17,472 - main - INFO - main:47 - --- Stage 1: Ingestion ---
+2026-02-17 15:19:17,472 - src.ingestion.alpha_vantage_client - INFO - alpha_vantage_client:34 - Fetching data for AAPL, attempt 1
+2026-02-17 15:19:21,347 - src.ingestion.alpha_vantage_client - INFO - alpha_vantage_client:90 - Successfully saved raw data for AAPL to C:\Users\SAKSHI VERMA\Documents\Data pipeline-stocks,crypto\financial_pipeline\data\raw\alpha_vantage\symbol=AAPL\date=2026-02-17\data.json
+2026-02-17 15:19:21,348 - src.ingestion.alpha_vantage_client - INFO - alpha_vantage_client:34 - Fetching data for MSFT, attempt 1
+2026-02-17 15:19:23,066 - src.ingestion.alpha_vantage_client - INFO - alpha_vantage_client:90 - Successfully saved raw data for MSFT to C:\Users\SAKSHI VERMA\Documents\Data pipeline-stocks,crypto\financial_pipeline\data\raw\alpha_vantage\symbol=MSFT\date=2026-02-17\data.json
+2026-02-17 15:19:23,067 - src.ingestion.alpha_vantage_client - INFO - alpha_vantage_client:34 - Fetching data for TSLA, attempt 1
+2026-02-17 15:21:03,850 - main - INFO - main:31 - Starting Financial Data Pipeline...
+2026-02-17 15:21:03,852 - main - INFO - main:47 - --- Stage 1: Ingestion ---
+2026-02-17 15:21:03,852 - src.ingestion.alpha_vantage_client - INFO - alpha_vantage_client:34 - Fetching data for AAPL, attempt 1
+2026-02-17 15:21:05,114 - src.ingestion.alpha_vantage_client - INFO - alpha_vantage_client:90 - Successfully saved raw data for AAPL to C:\Users\SAKSHI VERMA\Documents\Data pipeline-stocks,crypto\financial_pipeline\data\raw\alpha_vantage\symbol=AAPL\date=2026-02-17\data.json
+2026-02-17 15:21:05,114 - src.ingestion.alpha_vantage_client - INFO - alpha_vantage_client:34 - Fetching data for MSFT, attempt 1
+2026-02-17 15:21:06,649 - src.ingestion.alpha_vantage_client - INFO - alpha_vantage_client:90 - Successfully saved raw data for MSFT to C:\Users\SAKSHI VERMA\Documents\Data pipeline-stocks,crypto\financial_pipeline\data\raw\alpha_vantage\symbol=MSFT\date=2026-02-17\data.json
+2026-02-17 15:21:06,649 - src.ingestion.alpha_vantage_client - INFO - alpha_vantage_client:34 - Fetching data for TSLA, attempt 1
+2026-02-17 15:21:08,047 - src.ingestion.alpha_vantage_client - INFO - alpha_vantage_client:90 - Successfully saved raw data for TSLA to C:\Users\SAKSHI VERMA\Documents\Data pipeline-stocks,crypto\financial_pipeline\data\raw\alpha_vantage\symbol=TSLA\date=2026-02-17\data.json
+2026-02-17 15:21:08,050 - src.ingestion.alpha_vantage_client - INFO - alpha_vantage_client:34 - Fetching data for GOOGL, attempt 1
+2026-02-17 15:21:09,222 - src.ingestion.alpha_vantage_client - INFO - alpha_vantage_client:90 - Successfully saved raw data for GOOGL to C:\Users\SAKSHI VERMA\Documents\Data pipeline-stocks,crypto\financial_pipeline\data\raw\alpha_vantage\symbol=GOOGL\date=2026-02-17\data.json
+2026-02-17 15:21:09,223 - src.ingestion.alpha_vantage_client - INFO - alpha_vantage_client:34 - Fetching data for AMZN, attempt 1
+2026-02-17 15:21:10,580 - src.ingestion.alpha_vantage_client - INFO - alpha_vantage_client:90 - Successfully saved raw data for AMZN to C:\Users\SAKSHI VERMA\Documents\Data pipeline-stocks,crypto\financial_pipeline\data\raw\alpha_vantage\symbol=AMZN\date=2026-02-17\data.json
+2026-02-17 15:21:10,581 - main - INFO - main:60 - --- Stage 2: Cleaning ---
+2026-02-17 15:21:10,720 - src.processing.cleaner - INFO - cleaner:77 - Starting data cleaning...
+2026-02-17 15:21:10,788 - src.processing.cleaner - INFO - cleaner:102 - Data cleaning completed. Shape: (500, 7)
+2026-02-17 15:21:11,271 - src.processing.cleaner - INFO - cleaner:118 - Saved cleaned data to C:\Users\SAKSHI VERMA\Documents\Data pipeline-stocks,crypto\financial_pipeline\data\processed\cleaned_data.parquet
+2026-02-17 15:21:11,272 - main - INFO - main:65 - --- Stage 3: Transformation ---
+2026-02-17 15:21:12,033 - src.processing.transformer - INFO - transformer:22 - Starting data transformation...
+2026-02-17 15:21:12,065 - src.processing.transformer - INFO - transformer:46 - Data transformation completed. Columns added: daily_return, sma_*, volatility_*
+2026-02-17 15:21:12,072 - src.processing.transformer - INFO - transformer:57 - Saved analytics data to C:\Users\SAKSHI VERMA\Documents\Data pipeline-stocks,crypto\financial_pipeline\data\processed\analytics_data.parquet
+2026-02-17 15:21:12,072 - main - INFO - main:70 - --- Stage 4: Analysis ---
+2026-02-17 15:21:12,100 - src.analysis.statistics_engine - INFO - statistics_engine:24 - Computing statistics...
+2026-02-17 15:21:12,116 - src.analysis.statistics_engine - INFO - statistics_engine:44 - Statistics computation completed.
+2026-02-17 15:21:12,126 - main - INFO - main:74 - Pipeline completed successfully.
+2026-02-17 15:26:08,287 - main - INFO - main:31 - Starting Financial Data Pipeline...
+2026-02-17 15:26:08,289 - main - INFO - main:53 - --- Stage 1: Ingestion ---
+2026-02-17 15:26:08,289 - src.ingestion.alpha_vantage_client - INFO - alpha_vantage_client:36 - Fetching data for AAPL, attempt 1
+2026-02-17 15:26:11,745 - src.ingestion.alpha_vantage_client - INFO - alpha_vantage_client:92 - Successfully saved raw data for AAPL to C:\Users\SAKSHI VERMA\Documents\Data pipeline-stocks,crypto\financial_pipeline\data\raw\alpha_vantage\symbol=AAPL\date=2026-02-17\data.json
+2026-02-17 15:26:11,746 - src.ingestion.alpha_vantage_client - INFO - alpha_vantage_client:36 - Fetching data for MSFT, attempt 1
+2026-02-17 15:26:12,726 - src.ingestion.alpha_vantage_client - INFO - alpha_vantage_client:92 - Successfully saved raw data for MSFT to C:\Users\SAKSHI VERMA\Documents\Data pipeline-stocks,crypto\financial_pipeline\data\raw\alpha_vantage\symbol=MSFT\date=2026-02-17\data.json
+2026-02-17 15:26:12,727 - src.ingestion.alpha_vantage_client - INFO - alpha_vantage_client:36 - Fetching data for TSLA, attempt 1
+2026-02-17 15:26:14,607 - src.ingestion.alpha_vantage_client - INFO - alpha_vantage_client:92 - Successfully saved raw data for TSLA to C:\Users\SAKSHI VERMA\Documents\Data pipeline-stocks,crypto\financial_pipeline\data\raw\alpha_vantage\symbol=TSLA\date=2026-02-17\data.json
+2026-02-17 15:26:14,610 - src.ingestion.alpha_vantage_client - INFO - alpha_vantage_client:36 - Fetching data for GOOGL, attempt 1
+2026-02-17 15:26:20,167 - src.ingestion.alpha_vantage_client - INFO - alpha_vantage_client:92 - Successfully saved raw data for GOOGL to C:\Users\SAKSHI VERMA\Documents\Data pipeline-stocks,crypto\financial_pipeline\data\raw\alpha_vantage\symbol=GOOGL\date=2026-02-17\data.json
+2026-02-17 15:26:20,169 - src.ingestion.alpha_vantage_client - INFO - alpha_vantage_client:36 - Fetching data for AMZN, attempt 1
+2026-02-17 15:26:21,779 - src.ingestion.alpha_vantage_client - INFO - alpha_vantage_client:92 - Successfully saved raw data for AMZN to C:\Users\SAKSHI VERMA\Documents\Data pipeline-stocks,crypto\financial_pipeline\data\raw\alpha_vantage\symbol=AMZN\date=2026-02-17\data.json
+2026-02-17 15:26:21,780 - main - INFO - main:68 - --- Stage 2: Cleaning ---
+2026-02-17 15:26:21,806 - src.processing.cleaner - WARNING - cleaner:39 - Skipping Invalid JSON format in C:\Users\SAKSHI VERMA\Documents\Data pipeline-stocks,crypto\financial_pipeline\data\raw\alpha_vantage\symbol=TSLA\date=2026-02-17\data.json
+2026-02-17 15:26:21,839 - src.processing.cleaner - WARNING - cleaner:39 - Skipping Invalid JSON format in C:\Users\SAKSHI VERMA\Documents\Data pipeline-stocks,crypto\financial_pipeline\data\raw\alpha_vantage\symbol=MSFT\date=2026-02-17\data.json
+2026-02-17 15:26:21,842 - src.processing.cleaner - WARNING - cleaner:39 - Skipping Invalid JSON format in C:\Users\SAKSHI VERMA\Documents\Data pipeline-stocks,crypto\financial_pipeline\data\raw\alpha_vantage\symbol=GOOGL\date=2026-02-17\data.json
+2026-02-17 15:26:21,844 - src.processing.cleaner - WARNING - cleaner:39 - Skipping Invalid JSON format in C:\Users\SAKSHI VERMA\Documents\Data pipeline-stocks,crypto\financial_pipeline\data\raw\alpha_vantage\symbol=AMZN\date=2026-02-17\data.json
+2026-02-17 15:26:21,847 - src.processing.cleaner - WARNING - cleaner:39 - Skipping Invalid JSON format in C:\Users\SAKSHI VERMA\Documents\Data pipeline-stocks,crypto\financial_pipeline\data\raw\alpha_vantage\symbol=AAPL\date=2026-02-17\data.json
+2026-02-17 15:26:21,849 - src.processing.cleaner - WARNING - cleaner:68 - No data found in raw directory.
+2026-02-17 15:26:21,851 - src.processing.cleaner - WARNING - cleaner:129 - No data to clean.
+2026-02-17 15:26:21,852 - main - INFO - main:73 - --- Stage 3: Transformation ---
+2026-02-17 15:26:21,908 - src.processing.transformer - INFO - transformer:22 - Starting data transformation...
+2026-02-17 15:26:21,915 - src.processing.transformer - INFO - transformer:46 - Data transformation completed. Columns added: daily_return, sma_*, volatility_*
+2026-02-17 15:26:21,926 - src.processing.transformer - INFO - transformer:57 - Saved analytics data to C:\Users\SAKSHI VERMA\Documents\Data pipeline-stocks,crypto\financial_pipeline\data\processed\analytics_data.parquet
+2026-02-17 15:26:21,927 - main - INFO - main:78 - --- Stage 4: Analysis ---
+2026-02-17 15:26:21,946 - src.analysis.statistics_engine - INFO - statistics_engine:24 - Computing statistics...
+2026-02-17 15:26:21,951 - src.analysis.statistics_engine - INFO - statistics_engine:44 - Statistics computation completed.
+2026-02-17 15:26:21,956 - main - INFO - main:82 - Pipeline cycle completed.
+2026-02-17 15:26:21,956 - main - INFO - main:87 - Sleeping for 300 seconds...
+2026-02-17 15:26:52,338 - main - INFO - main:31 - Starting Financial Data Pipeline...
+2026-02-17 15:26:52,342 - main - INFO - main:53 - --- Stage 1: Ingestion ---
+2026-02-17 15:26:52,342 - src.ingestion.alpha_vantage_client - INFO - alpha_vantage_client:36 - Fetching data for AAPL, attempt 1
+2026-02-17 15:26:53,356 - src.ingestion.alpha_vantage_client - INFO - alpha_vantage_client:92 - Successfully saved raw data for AAPL to C:\Users\SAKSHI VERMA\Documents\Data pipeline-stocks,crypto\financial_pipeline\data\raw\alpha_vantage\symbol=AAPL\date=2026-02-17\data.json
+2026-02-17 15:26:53,357 - src.ingestion.alpha_vantage_client - INFO - alpha_vantage_client:36 - Fetching data for MSFT, attempt 1
+2026-02-17 15:26:54,440 - src.ingestion.alpha_vantage_client - INFO - alpha_vantage_client:92 - Successfully saved raw data for MSFT to C:\Users\SAKSHI VERMA\Documents\Data pipeline-stocks,crypto\financial_pipeline\data\raw\alpha_vantage\symbol=MSFT\date=2026-02-17\data.json
+2026-02-17 15:26:54,440 - src.ingestion.alpha_vantage_client - INFO - alpha_vantage_client:36 - Fetching data for TSLA, attempt 1
+2026-02-17 15:26:56,564 - src.ingestion.alpha_vantage_client - INFO - alpha_vantage_client:92 - Successfully saved raw data for TSLA to C:\Users\SAKSHI VERMA\Documents\Data pipeline-stocks,crypto\financial_pipeline\data\raw\alpha_vantage\symbol=TSLA\date=2026-02-17\data.json
+2026-02-17 15:26:56,565 - src.ingestion.alpha_vantage_client - INFO - alpha_vantage_client:36 - Fetching data for GOOGL, attempt 1
+2026-02-17 15:27:02,696 - src.ingestion.alpha_vantage_client - INFO - alpha_vantage_client:92 - Successfully saved raw data for GOOGL to C:\Users\SAKSHI VERMA\Documents\Data pipeline-stocks,crypto\financial_pipeline\data\raw\alpha_vantage\symbol=GOOGL\date=2026-02-17\data.json
+2026-02-17 15:27:02,697 - src.ingestion.alpha_vantage_client - INFO - alpha_vantage_client:36 - Fetching data for AMZN, attempt 1
+2026-02-17 15:27:03,548 - src.ingestion.alpha_vantage_client - INFO - alpha_vantage_client:92 - Successfully saved raw data for AMZN to C:\Users\SAKSHI VERMA\Documents\Data pipeline-stocks,crypto\financial_pipeline\data\raw\alpha_vantage\symbol=AMZN\date=2026-02-17\data.json
+2026-02-17 15:27:03,549 - main - INFO - main:68 - --- Stage 2: Cleaning ---
+2026-02-17 15:27:03,552 - src.processing.cleaner - WARNING - cleaner:39 - Skipping Invalid JSON format in C:\Users\SAKSHI VERMA\Documents\Data pipeline-stocks,crypto\financial_pipeline\data\raw\alpha_vantage\symbol=TSLA\date=2026-02-17\data.json
+2026-02-17 15:27:03,553 - src.processing.cleaner - WARNING - cleaner:39 - Skipping Invalid JSON format in C:\Users\SAKSHI VERMA\Documents\Data pipeline-stocks,crypto\financial_pipeline\data\raw\alpha_vantage\symbol=MSFT\date=2026-02-17\data.json
+2026-02-17 15:27:03,554 - src.processing.cleaner - WARNING - cleaner:39 - Skipping Invalid JSON format in C:\Users\SAKSHI VERMA\Documents\Data pipeline-stocks,crypto\financial_pipeline\data\raw\alpha_vantage\symbol=GOOGL\date=2026-02-17\data.json
+2026-02-17 15:27:03,555 - src.processing.cleaner - WARNING - cleaner:39 - Skipping Invalid JSON format in C:\Users\SAKSHI VERMA\Documents\Data pipeline-stocks,crypto\financial_pipeline\data\raw\alpha_vantage\symbol=AMZN\date=2026-02-17\data.json
+2026-02-17 15:27:03,556 - src.processing.cleaner - WARNING - cleaner:39 - Skipping Invalid JSON format in C:\Users\SAKSHI VERMA\Documents\Data pipeline-stocks,crypto\financial_pipeline\data\raw\alpha_vantage\symbol=AAPL\date=2026-02-17\data.json
+2026-02-17 15:27:03,556 - src.processing.cleaner - WARNING - cleaner:68 - No data found in raw directory.
+2026-02-17 15:27:03,557 - src.processing.cleaner - WARNING - cleaner:129 - No data to clean.
+2026-02-17 15:27:03,557 - main - INFO - main:73 - --- Stage 3: Transformation ---
+2026-02-17 15:27:03,598 - src.processing.transformer - INFO - transformer:22 - Starting data transformation...
+2026-02-17 15:27:03,606 - src.processing.transformer - INFO - transformer:46 - Data transformation completed. Columns added: daily_return, sma_*, volatility_*
+2026-02-17 15:27:03,610 - src.processing.transformer - INFO - transformer:57 - Saved analytics data to C:\Users\SAKSHI VERMA\Documents\Data pipeline-stocks,crypto\financial_pipeline\data\processed\analytics_data.parquet
+2026-02-17 15:27:03,611 - main - INFO - main:78 - --- Stage 4: Analysis ---
+2026-02-17 15:27:03,632 - src.analysis.statistics_engine - INFO - statistics_engine:24 - Computing statistics...
+2026-02-17 15:27:03,636 - src.analysis.statistics_engine - INFO - statistics_engine:44 - Statistics computation completed.
+2026-02-17 15:27:03,642 - main - INFO - main:82 - Pipeline cycle completed.
+2026-02-17 15:27:03,645 - main - INFO - main:87 - Sleeping for 300 seconds...
+2026-02-17 15:27:18,541 - main - INFO - main:92 - Pipeline stopped by user.

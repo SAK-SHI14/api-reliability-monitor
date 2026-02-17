@@ -1,0 +1,30 @@
+project_name: "api_reliability_monitor"
+version: "1.0.0"
+
+collection:
+  interval_seconds: 5
+  timeout_seconds: 3
+  apis:
+    - name: "GitHub API"
+      url: "https://api.github.com"
+      method: "GET"
+    - name: "HttpBin"
+      url: "https://httpbin.org/get"
+      method: "GET"
+    - name: "Postman Echo"
+      url: "https://postman-echo.com/get"
+      method: "GET"
+    - name: "JSONPlaceholder"
+      url: "https://jsonplaceholder.typicode.com/posts/1"
+      method: "GET"
+    - name: "OpenWeatherMap (Invalid Key)" # Intentional failure for testing
+      url: "https://api.openweathermap.org/data/2.5/weather?q=London&appid=invalid_key"
+      method: "GET"
+
+storage:
+  raw_path: "data/raw/metrics.jsonl"
+  retention_days: 7
+
+dashboard:
+  refresh_interval: 2
+  window_minutes: 15

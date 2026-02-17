@@ -1,0 +1,37 @@
+project_name: "financial_data_pipeline"
+version: "1.0.0"
+
+ingestion:
+  api_base_url: "https://www.alphavantage.co/query"
+  symbols:
+    - "AAPL"
+    - "MSFT"
+    - "TSLA"
+    - "GOOGL"
+    - "AMZN"
+  interval: "TIME_SERIES_INTRADAY" # Options: TIME_SERIES_INTRADAY, TIME_SERIES_DAILY
+  intraday_interval: "5min"
+  output_path: "data/raw"
+  convert_to_parquet: true
+  poll_interval_seconds: 300 # 5 minutes
+
+pipeline:
+  execution_mode: "continuous" # continuous or batch
+  
+processing:
+  raw_data_path: "data/raw"
+  processed_data_path: "data/processed/cleaned_data.parquet"
+  required_columns:
+    - "timestamp"
+    - "open"
+    - "high"
+    - "low"
+    - "close"
+    - "volume"
+  
+transformation:
+  rolling_windows: [7, 14, 30]
+  
+logging:
+  config_path: "config/logging_config.yaml"
+  log_dir: "logs"

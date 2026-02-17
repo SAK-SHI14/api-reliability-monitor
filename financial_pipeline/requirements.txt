@@ -1,0 +1,12 @@
+pandas
+numpy
+requests
+pyyaml
+python-dotenv
+streamlit
+matplotlib
+seaborn
+plotly
+pytest
+pyarrow
+fastparquet
