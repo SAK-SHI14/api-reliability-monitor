@@ -8,13 +8,44 @@ import sqlite3
 import os
 import json
 
+import logging
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger("api_backend")
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    # Start the background API monitor in the same container process
-    monitor_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "api_reliability_monitor", "main.py")
-    poller = subprocess.Popen([sys.executable, monitor_path], cwd=os.path.dirname(monitor_path))
+    # Determine the exact absolute path to the poller script
+    root_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    monitor_path = os.path.join(root_dir, "api_reliability_monitor", "main.py")
+    
+    logger.info(f"BOOTSTRAP: Starting background telemetry worker at {monitor_path}")
+    
+    if not os.path.exists(monitor_path):
+        logger.error(f"FATAL: Monitor script not found at {monitor_path}")
+    else:
+        try:
+            # Use absolute path for CWD to avoid any ambiguity
+            poller_cwd = os.path.dirname(monitor_path)
+            poller = subprocess.Popen(
+                [sys.executable, monitor_path], 
+                cwd=poller_cwd,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                text=True
+            )
+            logger.info(f"BOOTSTRAP: Background worker started with PID {poller.pid}")
+        except Exception as e:
+            logger.error(f"FATAL: Failed to start background worker: {e}")
+
     yield
-    poller.terminate()
+    
+    logger.info("SHUTDOWN: Terminating background telemetry worker")
+    try:
+        poller.terminate()
+        poller.wait(timeout=5)
+    except Exception as e:
+        logger.warning(f"SHUTDOWN: Error terminating worker: {e}")
 
 app = FastAPI(title="Unified Observability API", lifespan=lifespan)
 
