@@ -8,44 +8,32 @@ import sqlite3
 import os
 import json
 
-import logging
+import asyncio
+import threading
+from api_reliability_monitor.main import run_monitor
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("api_backend")
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    # Determine the exact absolute path to the poller script
+    # Determine absolute paths
     root_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    monitor_path = os.path.join(root_dir, "api_reliability_monitor", "main.py")
+    mock_script = os.path.join(root_dir, "llm_observability ollama", "mock_data.py")
     
-    logger.info(f"BOOTSTRAP: Starting background telemetry worker at {monitor_path}")
+    # 1. Start the telemetry poller thread (Always Running)
+    logger.info("BOOTSTRAP: Starting background telemetry worker...")
+    thread = threading.Thread(target=run_monitor, daemon=True)
+    thread.start()
     
-    if not os.path.exists(monitor_path):
-        logger.error(f"FATAL: Monitor script not found at {monitor_path}")
-    else:
-        try:
-            # Use absolute path for CWD to avoid any ambiguity
-            poller_cwd = os.path.dirname(monitor_path)
-            poller = subprocess.Popen(
-                [sys.executable, monitor_path], 
-                cwd=poller_cwd,
-                stdout=subprocess.PIPE,
-                stderr=subprocess.PIPE,
-                text=True
-            )
-            logger.info(f"BOOTSTRAP: Background worker started with PID {poller.pid}")
-        except Exception as e:
-            logger.error(f"FATAL: Failed to start background worker: {e}")
-
+    # 2. Run the LLM Mock Generator once to ensure DB exists (Required for UI feedback)
+    if os.path.exists(mock_script):
+        logger.info("BOOTSTRAP: Initializing LLM Trace Mock Data...")
+        # Since the folder name has a space, we run as a subprocess to be safe
+        subprocess.run([sys.executable, mock_script], cwd=os.path.dirname(mock_script))
+    
     yield
-    
-    logger.info("SHUTDOWN: Terminating background telemetry worker")
-    try:
-        poller.terminate()
-        poller.wait(timeout=5)
-    except Exception as e:
-        logger.warning(f"SHUTDOWN: Error terminating worker: {e}")
+    logger.info("SHUTDOWN: Stopping backend services...")
 
 app = FastAPI(title="Unified Observability API", lifespan=lifespan)
 
@@ -62,11 +50,39 @@ API_DB_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "api_reli
 LLM_DB_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "llm_observability ollama", "data", "observability.db")
 
 def get_db_connection(db_path):
-    if not os.path.exists(db_path):
-        return None
+    # Create the directory if missing (Resilience for first-run)
+    os.makedirs(os.path.dirname(db_path), exist_ok=True)
+    
+    # Connect
     conn = sqlite3.connect(db_path)
     conn.row_factory = sqlite3.Row
+    
+    # Ensure tables exist even if the poller hasn't finished its first cycle
+    # This prevents 404/500 errors on first frontend load
+    try:
+        cursor = conn.cursor()
+        if "api_reliability_monitor" in db_path:
+            cursor.execute("CREATE TABLE IF NOT EXISTS api_metrics (id INTEGER PRIMARY KEY, timestamp REAL, api_name TEXT, url TEXT, latency_ms REAL, status_code INTEGER, is_success BOOLEAN)")
+            cursor.execute("CREATE TABLE IF NOT EXISTS pipeline_events (id INTEGER PRIMARY KEY, timestamp REAL, event_type TEXT, stage TEXT, metrics_json TEXT)")
+        elif "llm_observability" in db_path:
+            cursor.execute("CREATE TABLE IF NOT EXISTS prompt_traces (id INTEGER PRIMARY KEY, trace_id TEXT, prompt_hash TEXT, request_ts REAL, total_latency_ms REAL, tokens_per_second REAL, total_tokens INTEGER)")
+        conn.commit()
+    except Exception as e:
+        logger.warning(f"DB Warmup Warning: {e}")
+        
     return conn
+
+@app.get("/api/system/status")
+def get_system_status():
+    return {
+        "status": "operational",
+        "api_db_exists": os.path.exists(API_DB_PATH),
+        "llm_db_exists": os.path.exists(LLM_DB_PATH),
+        "paths": {
+            "api_db": API_DB_PATH,
+            "llm_db": LLM_DB_PATH
+        }
+    }
 
 @app.get("/api/health")
 def health_check():
@@ -75,19 +91,8 @@ def health_check():
 @app.get("/api/api-metrics")
 def get_api_metrics(seconds: int = 600):
     conn = get_db_connection(API_DB_PATH)
-    if not conn:
-        raise HTTPException(status_code=404, detail="API DB not found")
-    
     # Get recent metrics
     cursor = conn.cursor()
-    cursor.execute(
-        "SELECT * FROM api_metrics WHERE timestamp > (strftime('%s', 'now') - ?) ORDER BY timestamp DESC LIMIT 500",
-        (seconds,)
-    )
-    # The stored timestamp is just time.time(). For time.time(), it's usually UTC epoch.
-    # Actually 'now' is not time.time(). It's better to fetch all and filter in python if time logic is complex, 
-    # but the API monitor uses python `time.time()`. 
-    # Let's just fetch recent 500 records.
     cursor.execute("SELECT * FROM api_metrics ORDER BY timestamp DESC LIMIT 100")
     rows = cursor.fetchall()
     conn.close()
@@ -97,8 +102,6 @@ def get_api_metrics(seconds: int = 600):
 @app.get("/api/pipeline-events")
 def get_pipeline_events():
     conn = get_db_connection(API_DB_PATH)
-    if not conn:
-        raise HTTPException(status_code=404, detail="API DB not found")
     
     cursor = conn.cursor()
     cursor.execute("SELECT * FROM pipeline_events ORDER BY timestamp DESC LIMIT 50")
@@ -119,8 +122,6 @@ def get_pipeline_events():
 @app.get("/api/llm-traces")
 def get_llm_traces():
     conn = get_db_connection(LLM_DB_PATH)
-    if not conn:
-        raise HTTPException(status_code=404, detail="LLM DB not found")
     
     cursor = conn.cursor()
     cursor.execute("SELECT * FROM prompt_traces ORDER BY request_ts DESC LIMIT 100")
