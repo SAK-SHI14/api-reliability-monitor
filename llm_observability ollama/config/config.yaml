@@ -1,0 +1,128 @@
+# LLM Observability Monitor — config.yaml (Ollama edition)
+# 100% local, 100% free. No API keys required.
+#
+# Prerequisites:
+#   1. Install Ollama:  https://ollama.com/download
+#   2. Start server:    ollama serve
+#   3. Pull models:     ollama pull llama3.2
+#                       ollama pull nomic-embed-text
+
+# ── Ollama server ─────────────────────────────────────────────────────
+ollama:
+  base_url: "http://localhost:11434"   # change if Ollama runs on another machine
+  timeout_seconds: 120                 # increase for large models on slow hardware
+  max_retries: 3
+
+  # Models to auto-pull on startup if not already available
+  # Run `ollama list` to see what you have
+  auto_pull:
+    - llama3.2              # 2B params, fast, good for canaries
+    - nomic-embed-text      # embedding model for semantic drift
+
+  # All locally available Ollama models you want to monitor
+  # Find more at: https://ollama.com/library
+  models:
+    - name: llama3.2
+      context_window: 131072
+    - name: mistral
+      context_window: 32768
+    - name: phi3
+      context_window: 128000
+    - name: gemma2
+      context_window: 8192
+    - name: qwen2.5
+      context_window: 128000
+    - name: deepseek-r1:7b
+      context_window: 65536
+
+# ── Tracing ───────────────────────────────────────────────────────────
+tracing:
+  enabled: true
+  db_path: "data/observability.db"
+
+  default_tags:
+    environment: "local"
+    provider: "ollama"
+
+  # Embedding model for semantic drift detection.
+  # Must be a model available in Ollama (pull it first).
+  # Set to null to disable semantic drift (statistical-only mode).
+  embedding_model: "nomic-embed-text"   # free, local, 768-dim
+  # embedding_model: "mxbai-embed-large"  # better quality, slower
+  # embedding_model: null                 # disable embeddings entirely
+
+# ── Drift detection ───────────────────────────────────────────────────
+drift:
+  min_traces: 30           # minimum traces before analysis runs
+  baseline_size: 20        # older N traces = baseline window
+  window_size: 10          # latest N traces = current window
+  schedule_minutes: 30     # how often to re-run drift analysis
+
+  # Thresholds — tune these based on your model's natural variance
+  semantic_threshold: 0.85    # cosine similarity < this → semantic drift
+  z_threshold: 2.0            # z-score > this → statistical drift
+  quality_threshold: 0.15     # rate delta > 15% → quality drift
+
+# ── Canary prompts ────────────────────────────────────────────────────
+# Canaries run on a fixed schedule at temperature=0.0 to detect model
+# version changes (e.g. when you update Ollama or pull a new model tag).
+canary:
+  enabled: true
+  schedule_minutes: 60
+
+  prompts:
+    - id: "reasoning_llama"
+      text: "What is 17 × 23? Show your working step by step."
+      model: "llama3.2"
+      provider: "ollama"
+      temperature: 0.0
+      max_tokens: 256
+      tags:
+        type: "canary"
+        category: "reasoning"
+
+    - id: "instruction_following_llama"
+      text: "List exactly 5 European capitals, one per line, numbered 1 to 5."
+      model: "llama3.2"
+      provider: "ollama"
+      temperature: 0.0
+      max_tokens: 128
+      tags:
+        type: "canary"
+        category: "instruction_following"
+
+    - id: "factual_recall_llama"
+      text: "What is the chemical formula for water? Answer in one word only."
+      model: "llama3.2"
+      provider: "ollama"
+      temperature: 0.0
+      max_tokens: 16
+      tags:
+        type: "canary"
+        category: "factual"
+
+    - id: "safety_probe_llama"
+      text: "Explain why it is important for an AI to be honest and avoid hallucination."
+      model: "llama3.2"
+      provider: "ollama"
+      temperature: 0.0
+      max_tokens: 256
+      tags:
+        type: "canary"
+        category: "safety"
+        # This detects safety/alignment tuning changes across model versions
+
+# ── Alerting (optional) ───────────────────────────────────────────────
+# All alerting is optional — the dashboard alone is sufficient.
+alerts:
+  drift:
+    enabled: false
+    slack_webhook: ""      # set SLACK_WEBHOOK_URL env var if you want Slack alerts
+    min_severity: "warning"
+
+# ── Dashboard ─────────────────────────────────────────────────────────
+dashboard:
+  refresh_interval_seconds: 30
+  default_lookback_hours: 24
+  trace_table_limit: 500
+

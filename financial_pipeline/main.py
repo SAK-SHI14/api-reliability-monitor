@@ -12,6 +12,7 @@ from src.ingestion.alpha_vantage_client import AlphaVantageClient
 from src.processing.cleaner import DataCleaner
 from src.processing.transformer import DataTransformer
 from src.analysis.statistics_engine import StatisticsEngine
+from src.utils.telemetry import PipelineTelemetry
 
 # Load Env
 load_dotenv()
@@ -49,6 +50,10 @@ def run_pipeline():
     
     while True:
         try:
+            # 0. Telemetry Start
+            telemetry = PipelineTelemetry()
+            telemetry.log_event("start", "pipeline")
+
             # 1. Ingestion
             logger.info("--- Stage 1: Ingestion ---")
             client = AlphaVantageClient(api_key)
@@ -56,30 +61,40 @@ def run_pipeline():
             interval = config['ingestion'].get('intraday_interval', '5min')
             function = config['ingestion'].get('interval', 'TIME_SERIES_INTRADAY')
             
+            total_records = 0
+            
             for symbol in symbols:
                 try:
                     data = client.fetch_data(symbol, function=function, interval=interval)
                     if data:
                         client.save_raw_data(data, symbol, base_path=raw_path)
+                        total_records += 1
                 except Exception as e:
                     logger.error(f"Failed ingestion for {symbol}: {e}")
+                    telemetry.log_event("error", "ingestion", {"symbol": symbol, "error": str(e)})
+
+            telemetry.log_event("success", "ingestion", {"records": total_records})
 
             # 2. Cleaning
             logger.info("--- Stage 2: Cleaning ---")
             cleaner = DataCleaner(raw_path=raw_path, processed_path=processed_path)
             cleaner.run()
+            telemetry.log_event("success", "cleaning")
 
             # 3. Transformation
             logger.info("--- Stage 3: Transformation ---")
             transformer = DataTransformer(input_path=processed_path, output_path=analytics_path)
             transformer.run()
+            telemetry.log_event("success", "transformation")
 
             # 4. Analysis
             logger.info("--- Stage 4: Analysis ---")
             stats_engine = StatisticsEngine(input_path=analytics_path)
             stats_engine.run()
+            telemetry.log_event("success", "analysis")
             
             logger.info("Pipeline cycle completed.")
+            telemetry.log_event("success", "pipeline")
             
             if mode != 'continuous':
                 break
@@ -93,6 +108,11 @@ def run_pipeline():
             break
         except Exception as e:
             logger.error(f"Pipeline crashed: {e}")
+            try:
+                telemetry.log_event("error", "pipeline", {"error": str(e)})
+            except:
+                pass
+            
             if mode != 'continuous':
                 break
             import time

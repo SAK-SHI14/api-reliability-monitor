@@ -142,3 +142,53 @@
 2026-02-17 15:27:03,642 - main - INFO - main:82 - Pipeline cycle completed.
 2026-02-17 15:27:03,645 - main - INFO - main:87 - Sleeping for 300 seconds...
 2026-02-17 15:27:18,541 - main - INFO - main:92 - Pipeline stopped by user.
+2026-02-19 15:23:40,882 - main - INFO - main:32 - Starting Financial Data Pipeline...
+2026-02-19 15:23:40,898 - telemetry - ERROR - telemetry:33 - Telemetry DB connection failed: no such table: pipeline_events
+2026-02-19 15:23:40,899 - telemetry - WARNING - telemetry:56 - Failed to log telemetry event: no such table: pipeline_events
+2026-02-19 15:23:40,899 - main - INFO - main:58 - --- Stage 1: Ingestion ---
+2026-02-19 15:23:40,899 - src.ingestion.alpha_vantage_client - INFO - alpha_vantage_client:36 - Fetching data for AAPL, attempt 1
+2026-02-19 15:23:40,972 - src.ingestion.alpha_vantage_client - ERROR - alpha_vantage_client:65 - Exception during fetch for AAPL: HTTPSConnectionPool(host='www.alphavantage.co', port=443): Max retries exceeded with url: /query?function=TIME_SERIES_INTRADAY&symbol=AAPL&apikey=YOUR_API_KEY_HERE&outputsize=compact&datatype=json&interval=5min (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1032)')))
+2026-02-19 15:23:41,973 - src.ingestion.alpha_vantage_client - INFO - alpha_vantage_client:36 - Fetching data for AAPL, attempt 2
+2026-02-19 15:23:43,056 - src.ingestion.alpha_vantage_client - INFO - alpha_vantage_client:92 - Successfully saved raw data for AAPL to C:\Users\SAKSHI VERMA\Documents\Data pipeline-stocks,crypto\financial_pipeline\data\raw\alpha_vantage\symbol=AAPL\date=2026-02-19\data.json
+2026-02-19 15:23:43,058 - src.ingestion.alpha_vantage_client - INFO - alpha_vantage_client:36 - Fetching data for MSFT, attempt 1
+2026-02-19 15:23:44,071 - src.ingestion.alpha_vantage_client - INFO - alpha_vantage_client:92 - Successfully saved raw data for MSFT to C:\Users\SAKSHI VERMA\Documents\Data pipeline-stocks,crypto\financial_pipeline\data\raw\alpha_vantage\symbol=MSFT\date=2026-02-19\data.json
+2026-02-19 15:23:44,073 - src.ingestion.alpha_vantage_client - INFO - alpha_vantage_client:36 - Fetching data for TSLA, attempt 1
+2026-02-19 15:23:44,092 - src.ingestion.alpha_vantage_client - ERROR - alpha_vantage_client:65 - Exception during fetch for TSLA: HTTPSConnectionPool(host='www.alphavantage.co', port=443): Max retries exceeded with url: /query?function=TIME_SERIES_INTRADAY&symbol=TSLA&apikey=YOUR_API_KEY_HERE&outputsize=compact&datatype=json&interval=5min (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1032)')))
+2026-02-19 15:23:45,093 - src.ingestion.alpha_vantage_client - INFO - alpha_vantage_client:36 - Fetching data for TSLA, attempt 2
+2026-02-19 15:23:46,690 - src.ingestion.alpha_vantage_client - INFO - alpha_vantage_client:92 - Successfully saved raw data for TSLA to C:\Users\SAKSHI VERMA\Documents\Data pipeline-stocks,crypto\financial_pipeline\data\raw\alpha_vantage\symbol=TSLA\date=2026-02-19\data.json
+2026-02-19 15:23:46,692 - src.ingestion.alpha_vantage_client - INFO - alpha_vantage_client:36 - Fetching data for GOOGL, attempt 1
+2026-02-19 15:23:47,047 - src.ingestion.alpha_vantage_client - INFO - alpha_vantage_client:92 - Successfully saved raw data for GOOGL to C:\Users\SAKSHI VERMA\Documents\Data pipeline-stocks,crypto\financial_pipeline\data\raw\alpha_vantage\symbol=GOOGL\date=2026-02-19\data.json
+2026-02-19 15:23:47,047 - src.ingestion.alpha_vantage_client - INFO - alpha_vantage_client:36 - Fetching data for AMZN, attempt 1
+2026-02-19 15:23:47,450 - src.ingestion.alpha_vantage_client - INFO - alpha_vantage_client:92 - Successfully saved raw data for AMZN to C:\Users\SAKSHI VERMA\Documents\Data pipeline-stocks,crypto\financial_pipeline\data\raw\alpha_vantage\symbol=AMZN\date=2026-02-19\data.json
+2026-02-19 15:23:47,453 - telemetry - ERROR - telemetry:33 - Telemetry DB connection failed: no such table: pipeline_events
+2026-02-19 15:23:47,454 - telemetry - WARNING - telemetry:56 - Failed to log telemetry event: no such table: pipeline_events
+2026-02-19 15:23:47,464 - main - INFO - main:79 - --- Stage 2: Cleaning ---
+2026-02-19 15:23:47,477 - src.processing.cleaner - WARNING - cleaner:39 - Skipping Invalid JSON format in C:\Users\SAKSHI VERMA\Documents\Data pipeline-stocks,crypto\financial_pipeline\data\raw\alpha_vantage\symbol=TSLA\date=2026-02-17\data.json
+2026-02-19 15:23:47,480 - src.processing.cleaner - WARNING - cleaner:39 - Skipping Invalid JSON format in C:\Users\SAKSHI VERMA\Documents\Data pipeline-stocks,crypto\financial_pipeline\data\raw\alpha_vantage\symbol=TSLA\date=2026-02-19\data.json
+2026-02-19 15:23:47,491 - src.processing.cleaner - WARNING - cleaner:39 - Skipping Invalid JSON format in C:\Users\SAKSHI VERMA\Documents\Data pipeline-stocks,crypto\financial_pipeline\data\raw\alpha_vantage\symbol=MSFT\date=2026-02-17\data.json
+2026-02-19 15:23:47,491 - src.processing.cleaner - WARNING - cleaner:39 - Skipping Invalid JSON format in C:\Users\SAKSHI VERMA\Documents\Data pipeline-stocks,crypto\financial_pipeline\data\raw\alpha_vantage\symbol=MSFT\date=2026-02-19\data.json
+2026-02-19 15:23:47,493 - src.processing.cleaner - WARNING - cleaner:39 - Skipping Invalid JSON format in C:\Users\SAKSHI VERMA\Documents\Data pipeline-stocks,crypto\financial_pipeline\data\raw\alpha_vantage\symbol=GOOGL\date=2026-02-17\data.json
+2026-02-19 15:23:47,506 - src.processing.cleaner - WARNING - cleaner:39 - Skipping Invalid JSON format in C:\Users\SAKSHI VERMA\Documents\Data pipeline-stocks,crypto\financial_pipeline\data\raw\alpha_vantage\symbol=GOOGL\date=2026-02-19\data.json
+2026-02-19 15:23:47,508 - src.processing.cleaner - WARNING - cleaner:39 - Skipping Invalid JSON format in C:\Users\SAKSHI VERMA\Documents\Data pipeline-stocks,crypto\financial_pipeline\data\raw\alpha_vantage\symbol=AMZN\date=2026-02-17\data.json
+2026-02-19 15:23:47,509 - src.processing.cleaner - WARNING - cleaner:39 - Skipping Invalid JSON format in C:\Users\SAKSHI VERMA\Documents\Data pipeline-stocks,crypto\financial_pipeline\data\raw\alpha_vantage\symbol=AMZN\date=2026-02-19\data.json
+2026-02-19 15:23:47,511 - src.processing.cleaner - WARNING - cleaner:39 - Skipping Invalid JSON format in C:\Users\SAKSHI VERMA\Documents\Data pipeline-stocks,crypto\financial_pipeline\data\raw\alpha_vantage\symbol=AAPL\date=2026-02-17\data.json
+2026-02-19 15:23:47,511 - src.processing.cleaner - WARNING - cleaner:39 - Skipping Invalid JSON format in C:\Users\SAKSHI VERMA\Documents\Data pipeline-stocks,crypto\financial_pipeline\data\raw\alpha_vantage\symbol=AAPL\date=2026-02-19\data.json
+2026-02-19 15:23:47,511 - src.processing.cleaner - WARNING - cleaner:68 - No data found in raw directory.
+2026-02-19 15:23:47,517 - src.processing.cleaner - WARNING - cleaner:129 - No data to clean.
+2026-02-19 15:23:47,518 - telemetry - ERROR - telemetry:33 - Telemetry DB connection failed: no such table: pipeline_events
+2026-02-19 15:23:47,519 - telemetry - WARNING - telemetry:56 - Failed to log telemetry event: no such table: pipeline_events
+2026-02-19 15:23:47,519 - main - INFO - main:85 - --- Stage 3: Transformation ---
+2026-02-19 15:23:48,670 - src.processing.transformer - INFO - transformer:22 - Starting data transformation...
+2026-02-19 15:23:48,711 - src.processing.transformer - INFO - transformer:46 - Data transformation completed. Columns added: daily_return, sma_*, volatility_*
+2026-02-19 15:23:48,718 - src.processing.transformer - INFO - transformer:57 - Saved analytics data to C:\Users\SAKSHI VERMA\Documents\Data pipeline-stocks,crypto\financial_pipeline\data\processed\analytics_data.parquet
+2026-02-19 15:23:48,719 - telemetry - ERROR - telemetry:33 - Telemetry DB connection failed: no such table: pipeline_events
+2026-02-19 15:23:48,720 - telemetry - WARNING - telemetry:56 - Failed to log telemetry event: no such table: pipeline_events
+2026-02-19 15:23:48,720 - main - INFO - main:91 - --- Stage 4: Analysis ---
+2026-02-19 15:23:48,747 - src.analysis.statistics_engine - INFO - statistics_engine:24 - Computing statistics...
+2026-02-19 15:23:48,756 - src.analysis.statistics_engine - INFO - statistics_engine:44 - Statistics computation completed.
+2026-02-19 15:23:48,764 - telemetry - ERROR - telemetry:33 - Telemetry DB connection failed: no such table: pipeline_events
+2026-02-19 15:23:48,764 - telemetry - WARNING - telemetry:56 - Failed to log telemetry event: no such table: pipeline_events
+2026-02-19 15:23:48,764 - main - INFO - main:96 - Pipeline cycle completed.
+2026-02-19 15:23:48,765 - telemetry - ERROR - telemetry:33 - Telemetry DB connection failed: no such table: pipeline_events
+2026-02-19 15:23:48,765 - telemetry - WARNING - telemetry:56 - Failed to log telemetry event: no such table: pipeline_events
+2026-02-19 15:23:48,766 - main - INFO - main:102 - Sleeping for 300 seconds...

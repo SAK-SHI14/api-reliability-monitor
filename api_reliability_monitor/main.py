@@ -8,7 +8,7 @@ import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), 'src'))
 
 from src.collector.pinger import APIPinger
-from src.storage.metrics_store import MetricsStore
+from src.storage.database import ObservabilityDB
 from src.utils.logger import setup_logging
 
 setup_logging("config/logging_config.yaml")
@@ -33,7 +33,8 @@ def run_monitor():
     apis = config.get("collection", {}).get("apis", [])
     
     pinger = APIPinger(timeout=config.get("collection", {}).get("timeout_seconds", 3))
-    store = MetricsStore(config.get("storage", {}).get("raw_path", "data/raw/metrics.jsonl"))
+    # db_path is auto-configured in database.py but can be overridden if needed
+    db = ObservabilityDB()
 
     logger.info(f"Monitoring {len(apis)} APIs with {interval}s interval.")
 
@@ -48,7 +49,15 @@ def run_monitor():
                     method=api.get("method", "GET"),
                     headers=api.get("headers")
                 )
-                store.save(metric)
+                
+                # Log to SQLite
+                db.log_api_metric(
+                    api_name=metric['api_name'],
+                    url=metric['url'],
+                    latency_ms=metric['latency_ms'],
+                    status_code=metric['status_code'],
+                    is_success=metric['is_success']
+                )
                 
                 status_icon = "[OK]" if metric["is_success"] else "[FAIL]"
                 logger.info(f"{status_icon} {metric['api_name']} - {metric['latency_ms']}ms - {metric['status_code']}")
@@ -58,9 +67,6 @@ def run_monitor():
             sleep_time = max(0, interval - cycle_duration)
             time.sleep(sleep_time)
             
-        except KeyboardInterrupt:
-            logger.info("Stopping monitor...")
-            break
         except Exception as e:
             logger.error(f"Unexpected error in monitor loop: {e}")
             time.sleep(interval)

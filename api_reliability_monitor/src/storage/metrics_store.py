@@ -26,8 +26,8 @@ class MetricsStore:
 
     def load_recent(self, limit=1000):
         """
-        Loads the most recent metrics (inefficient for large files, but fine for this scope).
-        For production, we would query a DB or read tail.
+        Loads the most recent metrics efficiently using a deque with maxlen.
+        This prevents reading the entire file into memory.
         """
         data = []
         if not self.file_path.exists():
@@ -35,11 +35,11 @@ class MetricsStore:
             
         try:
             with open(self.file_path, 'r') as f:
-                # Read all lines is simple but memory intensive for huge files.
-                # For a monitor running for hours, this is okay. 
-                # Optimization: Seek to end and read backwards, or simply keep in memory window.
-                lines = f.readlines()
-                for line in lines[-limit:]:
+                # Use deque to keep only the last 'limit' lines in memory efficiently
+                from collections import deque
+                last_lines = deque(f, maxlen=limit)
+                
+                for line in last_lines:
                     try:
                         data.append(json.loads(line))
                     except json.JSONDecodeError:
