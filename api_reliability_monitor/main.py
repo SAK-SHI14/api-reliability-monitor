@@ -11,10 +11,16 @@ from src.collector.pinger import APIPinger
 from src.storage.database import ObservabilityDB
 from src.utils.logger import setup_logging
 
-setup_logging("config/logging_config.yaml")
+# Get absolute paths relative to this file
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+CONFIG_DIR = os.path.join(BASE_DIR, "config")
+
+setup_logging(os.path.join(CONFIG_DIR, "logging_config.yaml"))
 logger = logging.getLogger("main")
 
-def load_config(config_path="config/config.yaml"):
+def load_config(config_path=None):
+    if config_path is None:
+        config_path = os.path.join(CONFIG_DIR, "config.yaml")
     try:
         with open(config_path, "r") as f:
             return yaml.safe_load(f)
