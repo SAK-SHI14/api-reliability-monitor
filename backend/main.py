@@ -20,7 +20,7 @@ logger = logging.getLogger("api_backend")
 async def lifespan(app: FastAPI):
     # Determine absolute paths
     root_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    mock_script = os.path.join(root_dir, "llm_observability ollama", "mock_data.py")
+    mock_script = os.path.join(root_dir, "llm_observability_ollama", "mock_data.py")
     
     def run_initialization():
         # 1. Start the telemetry poller (Blocking loop in a thread)
@@ -55,7 +55,7 @@ app.add_middleware(
 
 # Paths to the two databases
 API_DB_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "api_reliability_monitor", "data", "observability.db")
-LLM_DB_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "llm_observability ollama", "data", "observability.db")
+LLM_DB_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "llm_observability_ollama", "data", "observability.db")
 
 def get_db_connection(db_path):
     # Create the directory if missing (Resilience for first-run)

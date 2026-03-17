@@ -4,12 +4,21 @@ import logging
 import os
 import sys
 
-# Add src to path
-sys.path.append(os.path.join(os.path.dirname(__file__), 'src'))
+# Robust path handling for both standalone and package imports
+CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
+if CURRENT_DIR not in sys.path:
+    sys.path.append(CURRENT_DIR)
 
-from src.collector.pinger import APIPinger
-from src.storage.database import ObservabilityDB
-from src.utils.logger import setup_logging
+# Import local modules using absolute package paths if possible, 
+# otherwise fallback to direct imports
+try:
+    from .src.collector.pinger import APIPinger
+    from .src.storage.database import ObservabilityDB
+    from .src.utils.logger import setup_logging
+except (ImportError, ValueError):
+    from src.collector.pinger import APIPinger
+    from src.storage.database import ObservabilityDB
+    from src.utils.logger import setup_logging
 
 # Get absolute paths relative to this file
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))

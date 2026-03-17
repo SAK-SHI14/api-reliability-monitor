@@ -7012,3 +7012,222 @@
 2026-03-17 11:49:26,337 - main - INFO - [OK] Postman Echo - 399.92ms - 200
 2026-03-17 11:49:26,420 - main - INFO - [OK] JSONPlaceholder - 72.64ms - 200
 2026-03-17 11:49:26,553 - main - INFO - [FAIL] OpenWeatherMap (Invalid Key) - 124.47ms - 401
+2026-03-17 15:30:13,437 - api_backend - INFO - BOOTSTRAP: Starting background telemetry worker...
+2026-03-17 15:30:13,438 - main - INFO - Starting API Reliability Monitor...
+2026-03-17 15:30:13,439 - api_backend - INFO - BOOTSTRAP: Initializing LLM Trace Mock Data...
+2026-03-17 15:30:13,456 - main - INFO - Monitoring 5 APIs with 5s interval.
+2026-03-17 15:30:13,767 - main - INFO - [OK] GitHub API - 303.03ms - 200
+2026-03-17 15:30:15,512 - main - INFO - [OK] HttpBin - 1739.33ms - 200
+2026-03-17 15:30:16,027 - main - INFO - [OK] Postman Echo - 509.87ms - 200
+2026-03-17 15:30:16,201 - main - INFO - [OK] JSONPlaceholder - 166.04ms - 200
+2026-03-17 15:30:16,595 - main - INFO - [FAIL] OpenWeatherMap (Invalid Key) - 386.83ms - 401
+2026-03-17 15:30:18,715 - main - INFO - [OK] GitHub API - 252.67ms - 200
+2026-03-17 15:30:20,088 - main - INFO - [OK] HttpBin - 1368.58ms - 200
+2026-03-17 15:30:20,408 - main - INFO - [OK] Postman Echo - 312.91ms - 200
+2026-03-17 15:30:20,540 - main - INFO - [OK] JSONPlaceholder - 125.58ms - 200
+2026-03-17 15:30:20,863 - main - INFO - [FAIL] OpenWeatherMap (Invalid Key) - 315.16ms - 401
+2026-03-17 15:30:23,687 - main - INFO - [OK] GitHub API - 224.92ms - 200
+2026-03-17 15:30:25,346 - main - INFO - [OK] HttpBin - 1653.6ms - 200
+2026-03-17 15:30:25,669 - main - INFO - [OK] Postman Echo - 317.11ms - 200
+2026-03-17 15:30:26,837 - main - INFO - [OK] JSONPlaceholder - 1162.94ms - 200
+2026-03-17 15:30:27,183 - main - INFO - [FAIL] OpenWeatherMap (Invalid Key) - 340.48ms - 401
+2026-03-17 15:30:28,652 - main - INFO - [OK] GitHub API - 186.02ms - 200
+2026-03-17 15:30:30,001 - main - INFO - [OK] HttpBin - 1341.11ms - 200
+2026-03-17 15:30:30,347 - main - INFO - [OK] Postman Echo - 338.71ms - 200
+2026-03-17 15:30:30,471 - main - INFO - [OK] JSONPlaceholder - 118.01ms - 200
+2026-03-17 15:30:30,748 - main - INFO - [FAIL] OpenWeatherMap (Invalid Key) - 271.23ms - 401
+2026-03-17 15:30:33,740 - main - INFO - [OK] GitHub API - 275.5ms - 200
+2026-03-17 15:30:35,206 - main - INFO - [OK] HttpBin - 1459.44ms - 200
+2026-03-17 15:30:35,535 - main - INFO - [OK] Postman Echo - 321.01ms - 200
+2026-03-17 15:30:35,638 - main - INFO - [OK] JSONPlaceholder - 96.12ms - 200
+2026-03-17 15:30:35,983 - main - INFO - [FAIL] OpenWeatherMap (Invalid Key) - 337.82ms - 401
+2026-03-17 15:30:38,703 - main - INFO - [OK] GitHub API - 239.81ms - 200
+2026-03-17 15:30:40,090 - main - INFO - [OK] HttpBin - 1379.09ms - 200
+2026-03-17 15:30:40,415 - main - INFO - [OK] Postman Echo - 316.29ms - 200
+2026-03-17 15:30:40,556 - main - INFO - [OK] JSONPlaceholder - 133.78ms - 200
+2026-03-17 15:30:40,991 - main - INFO - [FAIL] OpenWeatherMap (Invalid Key) - 426.83ms - 401
+2026-03-17 15:30:43,710 - main - INFO - [OK] GitHub API - 247.83ms - 200
+2026-03-17 15:30:45,578 - main - INFO - [OK] HttpBin - 1862.44ms - 200
+2026-03-17 15:30:45,932 - main - INFO - [OK] Postman Echo - 341.98ms - 200
+2026-03-17 15:30:46,076 - main - INFO - [OK] JSONPlaceholder - 136.39ms - 200
+2026-03-17 15:30:46,423 - main - INFO - [FAIL] OpenWeatherMap (Invalid Key) - 338.28ms - 401
+2026-03-17 15:30:48,683 - main - INFO - [OK] GitHub API - 216.46ms - 200
+2026-03-17 15:30:50,079 - main - INFO - [OK] HttpBin - 1388.96ms - 200
+2026-03-17 15:30:50,428 - main - INFO - [OK] Postman Echo - 341.66ms - 200
+2026-03-17 15:30:50,583 - main - INFO - [OK] JSONPlaceholder - 150.24ms - 200
+2026-03-17 15:30:55,587 - main - INFO - [FAIL] OpenWeatherMap (Invalid Key) - 4997.36ms - 401
+2026-03-17 15:30:55,939 - main - INFO - [OK] GitHub API - 345.12ms - 200
+2026-03-17 15:30:57,340 - main - INFO - [OK] HttpBin - 1395.8ms - 200
+2026-03-17 15:30:57,658 - main - INFO - [OK] Postman Echo - 311.18ms - 200
+2026-03-17 15:30:57,800 - main - INFO - [OK] JSONPlaceholder - 136.86ms - 200
+2026-03-17 15:30:58,229 - main - INFO - [FAIL] OpenWeatherMap (Invalid Key) - 422.68ms - 401
+2026-03-17 15:31:00,780 - main - INFO - [OK] GitHub API - 188.24ms - 200
+2026-03-17 15:31:02,291 - main - INFO - [OK] HttpBin - 1504.14ms - 200
+2026-03-17 15:31:02,831 - main - INFO - [OK] Postman Echo - 530.36ms - 200
+2026-03-17 15:31:03,033 - main - INFO - [OK] JSONPlaceholder - 195.41ms - 200
+2026-03-17 15:31:03,649 - main - INFO - [FAIL] OpenWeatherMap (Invalid Key) - 608.62ms - 401
+2026-03-17 15:31:05,807 - main - INFO - [OK] GitHub API - 215.39ms - 200
+2026-03-17 15:31:08,169 - main - INFO - [OK] HttpBin - 2354.64ms - 200
+2026-03-17 15:31:08,541 - main - INFO - [OK] Postman Echo - 362.54ms - 200
+2026-03-17 15:31:08,654 - main - INFO - [OK] JSONPlaceholder - 105.41ms - 200
+2026-03-17 15:31:08,993 - main - INFO - [FAIL] OpenWeatherMap (Invalid Key) - 328.47ms - 401
+2026-03-17 15:31:10,828 - main - INFO - [OK] GitHub API - 235.56ms - 200
+2026-03-17 15:31:12,185 - main - INFO - [OK] HttpBin - 1351.4ms - 200
+2026-03-17 15:31:12,529 - main - INFO - [OK] Postman Echo - 329.4ms - 200
+2026-03-17 15:31:12,632 - main - INFO - [OK] JSONPlaceholder - 96.97ms - 200
+2026-03-17 15:31:12,976 - main - INFO - [FAIL] OpenWeatherMap (Invalid Key) - 336.57ms - 401
+2026-03-17 15:31:15,801 - main - INFO - [OK] GitHub API - 208.36ms - 200
+2026-03-17 15:31:17,187 - main - INFO - [OK] HttpBin - 1378.41ms - 200
+2026-03-17 15:31:17,880 - main - INFO - [OK] Postman Echo - 687.43ms - 200
+2026-03-17 15:31:17,978 - main - INFO - [OK] JSONPlaceholder - 91.14ms - 200
+2026-03-17 15:31:18,290 - main - INFO - [FAIL] OpenWeatherMap (Invalid Key) - 302.68ms - 401
+2026-03-17 15:31:20,823 - main - INFO - [FAIL] GitHub API - 229.68ms - 403
+2026-03-17 15:31:22,280 - main - INFO - [OK] HttpBin - 1450.99ms - 200
+2026-03-17 15:31:22,629 - main - INFO - [OK] Postman Echo - 343.68ms - 200
+2026-03-17 15:31:22,716 - main - INFO - [OK] JSONPlaceholder - 79.41ms - 200
+2026-03-17 15:31:23,099 - main - INFO - [FAIL] OpenWeatherMap (Invalid Key) - 378.43ms - 401
+2026-03-17 15:31:25,828 - main - INFO - [FAIL] GitHub API - 234.28ms - 403
+2026-03-17 15:31:27,115 - main - INFO - [OK] HttpBin - 1281.7ms - 200
+2026-03-17 15:31:27,435 - main - INFO - [OK] Postman Echo - 315.08ms - 200
+2026-03-17 15:31:27,521 - main - INFO - [OK] JSONPlaceholder - 79.47ms - 200
+2026-03-17 15:31:27,891 - main - INFO - [FAIL] OpenWeatherMap (Invalid Key) - 364.95ms - 401
+2026-03-17 15:31:30,791 - main - INFO - [FAIL] GitHub API - 196.18ms - 403
+2026-03-17 15:31:32,499 - main - INFO - [OK] HttpBin - 1701.57ms - 200
+2026-03-17 15:31:32,823 - main - INFO - [OK] Postman Echo - 318.22ms - 200
+2026-03-17 15:31:32,921 - main - INFO - [OK] JSONPlaceholder - 91.78ms - 200
+2026-03-17 15:31:33,234 - main - INFO - [FAIL] OpenWeatherMap (Invalid Key) - 307.67ms - 401
+2026-03-17 15:31:35,839 - main - INFO - [FAIL] GitHub API - 243.71ms - 403
+2026-03-17 15:31:37,266 - main - INFO - [OK] HttpBin - 1418.46ms - 200
+2026-03-17 15:31:37,609 - main - INFO - [OK] Postman Echo - 336.44ms - 200
+2026-03-17 15:31:37,719 - main - INFO - [OK] JSONPlaceholder - 103.16ms - 200
+2026-03-17 15:31:38,084 - main - INFO - [FAIL] OpenWeatherMap (Invalid Key) - 356.48ms - 401
+2026-03-17 15:31:40,805 - main - INFO - [FAIL] GitHub API - 210.75ms - 403
+2026-03-17 15:31:42,166 - main - INFO - [OK] HttpBin - 1354.54ms - 200
+2026-03-17 15:31:42,483 - main - INFO - [OK] Postman Echo - 309.03ms - 200
+2026-03-17 15:31:42,589 - main - INFO - [OK] JSONPlaceholder - 97.82ms - 200
+2026-03-17 15:31:42,963 - main - INFO - [FAIL] OpenWeatherMap (Invalid Key) - 366.96ms - 401
+2026-03-17 15:31:45,793 - main - INFO - [FAIL] GitHub API - 196.4ms - 403
+2026-03-17 15:31:47,173 - main - INFO - [OK] HttpBin - 1374.69ms - 200
+2026-03-17 15:31:47,486 - main - INFO - [OK] Postman Echo - 304.32ms - 200
+2026-03-17 15:31:47,581 - main - INFO - [OK] JSONPlaceholder - 89.71ms - 200
+2026-03-17 15:31:47,942 - main - INFO - [FAIL] OpenWeatherMap (Invalid Key) - 355.8ms - 401
+2026-03-17 15:31:50,807 - main - INFO - [FAIL] GitHub API - 210.18ms - 403
+2026-03-17 15:31:52,056 - main - INFO - [OK] HttpBin - 1243.7ms - 200
+2026-03-17 15:31:52,415 - main - INFO - [OK] Postman Echo - 350.04ms - 200
+2026-03-17 15:31:52,516 - main - INFO - [OK] JSONPlaceholder - 94.78ms - 200
+2026-03-17 15:31:52,845 - main - INFO - [FAIL] OpenWeatherMap (Invalid Key) - 322.0ms - 401
+2026-03-17 15:31:55,829 - main - INFO - [FAIL] GitHub API - 232.66ms - 403
+2026-03-17 15:31:57,358 - main - INFO - [OK] HttpBin - 1522.44ms - 200
+2026-03-17 15:31:57,687 - main - INFO - [OK] Postman Echo - 321.36ms - 200
+2026-03-17 15:31:57,805 - main - INFO - [OK] JSONPlaceholder - 109.83ms - 200
+2026-03-17 15:31:58,263 - main - INFO - [FAIL] OpenWeatherMap (Invalid Key) - 450.7ms - 401
+2026-03-17 15:32:00,799 - main - INFO - [FAIL] GitHub API - 200.03ms - 403
+2026-03-17 15:32:02,357 - main - INFO - [OK] HttpBin - 1549.76ms - 200
+2026-03-17 15:32:02,710 - main - INFO - [OK] Postman Echo - 346.13ms - 200
+2026-03-17 15:32:03,308 - main - INFO - [OK] JSONPlaceholder - 589.83ms - 200
+2026-03-17 15:32:03,775 - main - INFO - [FAIL] OpenWeatherMap (Invalid Key) - 460.0ms - 401
+2026-03-17 15:32:05,792 - main - INFO - [FAIL] GitHub API - 197.55ms - 403
+2026-03-17 15:32:07,130 - main - INFO - [OK] HttpBin - 1331.48ms - 200
+2026-03-17 15:32:07,472 - main - INFO - [OK] Postman Echo - 336.27ms - 200
+2026-03-17 15:32:07,567 - main - INFO - [OK] JSONPlaceholder - 88.42ms - 200
+2026-03-17 15:32:07,956 - main - INFO - [FAIL] OpenWeatherMap (Invalid Key) - 383.59ms - 401
+2026-03-17 15:32:10,909 - main - INFO - [FAIL] GitHub API - 314.44ms - 403
+2026-03-17 15:32:12,330 - main - INFO - [OK] HttpBin - 1416.5ms - 200
+2026-03-17 15:32:12,652 - main - INFO - [OK] Postman Echo - 315.39ms - 200
+2026-03-17 15:32:12,811 - main - INFO - [OK] JSONPlaceholder - 154.03ms - 200
+2026-03-17 15:32:13,124 - main - INFO - [FAIL] OpenWeatherMap (Invalid Key) - 308.66ms - 401
+2026-03-17 15:32:15,818 - main - INFO - [FAIL] GitHub API - 222.61ms - 403
+2026-03-17 15:32:17,835 - main - INFO - [OK] HttpBin - 2014.14ms - 200
+2026-03-17 15:32:18,296 - main - INFO - [OK] Postman Echo - 452.66ms - 200
+2026-03-17 15:32:18,486 - main - INFO - [OK] JSONPlaceholder - 184.62ms - 200
+2026-03-17 15:32:18,903 - main - INFO - [FAIL] OpenWeatherMap (Invalid Key) - 412.55ms - 401
+2026-03-17 15:32:20,811 - main - INFO - [FAIL] GitHub API - 213.76ms - 403
+2026-03-17 15:32:22,181 - main - INFO - [OK] HttpBin - 1364.64ms - 200
+2026-03-17 15:32:22,540 - main - INFO - [OK] Postman Echo - 353.82ms - 200
+2026-03-17 15:32:22,651 - main - INFO - [OK] JSONPlaceholder - 104.13ms - 200
+2026-03-17 15:32:22,975 - main - INFO - [FAIL] OpenWeatherMap (Invalid Key) - 316.89ms - 401
+2026-03-17 15:32:25,833 - main - INFO - [FAIL] GitHub API - 234.14ms - 403
+2026-03-17 15:32:27,207 - main - INFO - [OK] HttpBin - 1365.38ms - 200
+2026-03-17 15:32:27,590 - main - INFO - [OK] Postman Echo - 376.17ms - 200
+2026-03-17 15:32:27,806 - main - INFO - [OK] JSONPlaceholder - 211.12ms - 200
+2026-03-17 15:32:28,184 - main - INFO - [FAIL] OpenWeatherMap (Invalid Key) - 373.22ms - 401
+2026-03-17 15:32:30,832 - main - INFO - [FAIL] GitHub API - 234.08ms - 403
+2026-03-17 15:32:32,540 - main - INFO - [OK] HttpBin - 1703.19ms - 200
+2026-03-17 15:32:32,910 - main - INFO - [OK] Postman Echo - 365.7ms - 200
+2026-03-17 15:32:33,085 - main - INFO - [OK] JSONPlaceholder - 168.6ms - 200
+2026-03-17 15:32:33,400 - main - INFO - [FAIL] OpenWeatherMap (Invalid Key) - 309.38ms - 401
+2026-03-17 15:32:35,810 - main - INFO - [FAIL] GitHub API - 211.08ms - 403
+2026-03-17 15:32:38,335 - main - INFO - [OK] HttpBin - 2519.15ms - 200
+2026-03-17 15:32:38,662 - main - INFO - [OK] Postman Echo - 319.48ms - 200
+2026-03-17 15:32:38,789 - main - INFO - [OK] JSONPlaceholder - 122.16ms - 200
+2026-03-17 15:32:39,082 - main - INFO - [FAIL] OpenWeatherMap (Invalid Key) - 288.02ms - 401
+2026-03-17 15:32:40,846 - main - INFO - [FAIL] GitHub API - 244.33ms - 403
+2026-03-17 15:32:42,227 - main - INFO - [OK] HttpBin - 1373.64ms - 200
+2026-03-17 15:32:42,576 - main - INFO - [OK] Postman Echo - 342.89ms - 200
+2026-03-17 15:32:42,712 - main - INFO - [OK] JSONPlaceholder - 130.72ms - 200
+2026-03-17 15:32:43,068 - main - INFO - [FAIL] OpenWeatherMap (Invalid Key) - 351.05ms - 401
+2026-03-17 15:32:45,809 - main - INFO - [FAIL] GitHub API - 209.99ms - 403
+2026-03-17 15:32:47,181 - main - INFO - [OK] HttpBin - 1365.87ms - 200
+2026-03-17 15:32:47,494 - main - INFO - [OK] Postman Echo - 303.63ms - 200
+2026-03-17 15:32:47,643 - main - INFO - [OK] JSONPlaceholder - 143.73ms - 200
+2026-03-17 15:32:48,028 - main - INFO - [FAIL] OpenWeatherMap (Invalid Key) - 378.76ms - 401
+2026-03-17 15:32:50,887 - main - INFO - [FAIL] GitHub API - 288.29ms - 403
+2026-03-17 15:32:53,392 - main - INFO - [OK] HttpBin - 2496.89ms - 200
+2026-03-17 15:32:53,817 - main - INFO - [OK] Postman Echo - 421.39ms - 200
+2026-03-17 15:32:53,934 - main - INFO - [OK] JSONPlaceholder - 111.54ms - 200
+2026-03-17 15:32:54,296 - main - INFO - [FAIL] OpenWeatherMap (Invalid Key) - 356.13ms - 401
+2026-03-17 15:32:55,847 - main - INFO - [FAIL] GitHub API - 247.36ms - 403
+2026-03-17 15:32:57,184 - main - INFO - [OK] HttpBin - 1331.35ms - 200
+2026-03-17 15:32:57,582 - main - INFO - [OK] Postman Echo - 392.49ms - 200
+2026-03-17 15:32:57,988 - main - INFO - [OK] JSONPlaceholder - 399.93ms - 200
+2026-03-17 15:32:58,324 - main - INFO - [FAIL] OpenWeatherMap (Invalid Key) - 329.15ms - 401
+2026-03-17 15:33:00,883 - main - INFO - [FAIL] GitHub API - 283.7ms - 403
+2026-03-17 15:33:02,400 - main - INFO - [OK] HttpBin - 1510.48ms - 200
+2026-03-17 15:33:02,762 - main - INFO - [OK] Postman Echo - 354.35ms - 200
+2026-03-17 15:33:02,903 - main - INFO - [OK] JSONPlaceholder - 134.42ms - 200
+2026-03-17 15:33:03,216 - main - INFO - [FAIL] OpenWeatherMap (Invalid Key) - 306.73ms - 401
+2026-03-17 15:33:06,060 - main - INFO - [FAIL] GitHub API - 458.2ms - 403
+2026-03-17 15:33:07,521 - main - INFO - [OK] HttpBin - 1455.1ms - 200
+2026-03-17 15:33:07,845 - main - INFO - [OK] Postman Echo - 319.29ms - 200
+2026-03-17 15:33:07,977 - main - INFO - [OK] JSONPlaceholder - 124.92ms - 200
+2026-03-17 15:33:08,308 - main - INFO - [FAIL] OpenWeatherMap (Invalid Key) - 323.67ms - 401
+2026-03-17 15:33:10,819 - main - INFO - [FAIL] GitHub API - 218.06ms - 403
+2026-03-17 15:33:12,249 - main - INFO - [OK] HttpBin - 1425.87ms - 200
+2026-03-17 15:33:12,607 - main - INFO - [OK] Postman Echo - 352.22ms - 200
+2026-03-17 15:33:12,704 - main - INFO - [OK] JSONPlaceholder - 92.1ms - 200
+2026-03-17 15:33:13,083 - main - INFO - [FAIL] OpenWeatherMap (Invalid Key) - 374.27ms - 401
+2026-03-17 15:33:15,868 - main - INFO - [FAIL] GitHub API - 265.39ms - 403
+2026-03-17 15:33:17,374 - main - INFO - [OK] HttpBin - 1500.91ms - 200
+2026-03-17 15:33:17,755 - main - INFO - [OK] Postman Echo - 372.02ms - 200
+2026-03-17 15:33:17,882 - main - INFO - [OK] JSONPlaceholder - 122.08ms - 200
+2026-03-17 15:33:18,249 - main - INFO - [FAIL] OpenWeatherMap (Invalid Key) - 359.52ms - 401
+2026-03-17 15:33:20,801 - main - INFO - [FAIL] GitHub API - 199.53ms - 403
+2026-03-17 15:33:22,509 - main - INFO - [OK] HttpBin - 1701.18ms - 200
+2026-03-17 15:33:22,960 - main - INFO - [OK] Postman Echo - 442.44ms - 200
+2026-03-17 15:33:23,133 - main - INFO - [OK] JSONPlaceholder - 167.1ms - 200
+2026-03-17 15:33:23,461 - main - INFO - [FAIL] OpenWeatherMap (Invalid Key) - 318.84ms - 401
+2026-03-17 15:33:25,803 - main - INFO - [FAIL] GitHub API - 201.64ms - 403
+2026-03-17 15:33:27,170 - main - INFO - [OK] HttpBin - 1362.41ms - 200
+2026-03-17 15:33:27,494 - main - INFO - [OK] Postman Echo - 314.64ms - 200
+2026-03-17 15:33:27,673 - main - INFO - [OK] JSONPlaceholder - 173.02ms - 200
+2026-03-17 15:33:28,030 - main - INFO - [FAIL] OpenWeatherMap (Invalid Key) - 350.39ms - 401
+2026-03-17 15:33:30,821 - main - INFO - [FAIL] GitHub API - 220.63ms - 403
+2026-03-17 15:33:32,429 - main - INFO - [OK] HttpBin - 1594.74ms - 200
+2026-03-17 15:33:32,835 - main - INFO - [OK] Postman Echo - 401.57ms - 200
+2026-03-17 15:33:34,014 - main - INFO - [OK] JSONPlaceholder - 1171.63ms - 200
+2026-03-17 15:33:34,367 - main - INFO - [FAIL] OpenWeatherMap (Invalid Key) - 346.26ms - 401
+2026-03-17 15:33:36,828 - main - INFO - [FAIL] GitHub API - 1225.39ms - 403
+2026-03-17 15:33:38,309 - main - INFO - [OK] HttpBin - 1473.19ms - 200
+2026-03-17 15:33:38,687 - main - INFO - [OK] Postman Echo - 371.15ms - 200
+2026-03-17 15:33:38,856 - main - INFO - [OK] JSONPlaceholder - 164.67ms - 200
+2026-03-17 15:33:39,228 - main - INFO - [FAIL] OpenWeatherMap (Invalid Key) - 363.09ms - 401
+2026-03-17 15:33:40,815 - main - INFO - [FAIL] GitHub API - 210.92ms - 403
+2026-03-17 15:33:42,268 - main - INFO - [OK] HttpBin - 1446.12ms - 200
+2026-03-17 15:33:42,650 - main - INFO - [OK] Postman Echo - 375.57ms - 200
+2026-03-17 15:33:42,761 - main - INFO - [OK] JSONPlaceholder - 102.09ms - 200
+2026-03-17 15:33:43,177 - main - INFO - [FAIL] OpenWeatherMap (Invalid Key) - 409.85ms - 401
+2026-03-17 15:33:43,908 - api_backend - INFO - BOOTSTRAP: Starting background telemetry worker...
+2026-03-17 15:33:43,909 - main - INFO - Starting API Reliability Monitor...
+2026-03-17 15:33:43,909 - api_backend - INFO - BOOTSTRAP: Initializing LLM Trace Mock Data...
+2026-03-17 15:33:43,913 - main - INFO - Monitoring 5 APIs with 5s interval.
+2026-03-17 15:33:44,015 - api_backend - INFO - SHUTDOWN: Stopping backend services...

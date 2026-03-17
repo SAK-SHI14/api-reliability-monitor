@@ -14,7 +14,7 @@ WORKDIR /app
 RUN apt-get update && apt-get install -y sqlite3 gcc g++ python3-dev && rm -rf /var/lib/apt/lists/*
 
 # Install exact production dependencies for fast builds
-RUN pip install --no-cache-dir fastapi uvicorn requests pyyaml ExceptionGroup
+RUN pip install --no-cache-dir fastapi uvicorn requests pyyaml 
 
 # Copy all source files
 COPY . .
@@ -22,12 +22,8 @@ COPY . .
 # Extract built frontend assets from the node builder
 COPY --from=frontend-builder /app/frontend/dist /app/frontend/dist
 
-# Define default port
-EXPOSE 8000
-
-# Setting Python Path so module imports work correctly
+# Setting Python Path
 ENV PYTHONPATH="/app"
 
-# Start backend using the unified python launcher.
-# This launcher handles dynamic $PORT allocation for Railway/Render automatically.
-CMD ["python", "-m", "backend.main"]
+# Start backend using Uvicorn CLI to ensure maximum compatibility with cloud port binding
+CMD ["sh", "-c", "uvicorn backend.main:app --host 0.0.0.0 --port ${PORT:-8000}"]
