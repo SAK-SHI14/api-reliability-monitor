@@ -13,11 +13,8 @@ WORKDIR /app
 # Install OS dependencies
 RUN apt-get update && apt-get install -y sqlite3 && rm -rf /var/lib/apt/lists/*
 
-# Install python dependencies for both subprojects
-COPY backend/requirements.txt backend/
-COPY api_reliability_monitor/requirements.txt api_reliability_monitor/
-RUN pip install --no-cache-dir -r backend/requirements.txt
-RUN pip install --no-cache-dir -r api_reliability_monitor/requirements.txt
+# Install exact production dependencies for fast builds
+RUN pip install --no-cache-dir fastapi uvicorn requests pyyaml
 
 # Copy all source files
 COPY . .
