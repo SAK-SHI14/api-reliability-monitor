@@ -67,20 +67,20 @@ By merging these disparate data streams into a centralized `FastAPI` service, th
 
 ```mermaid
 graph TD
-    subgraph Data Collection Daemons
-        A[API HTTP Poller<br><i>(api_reliability_monitor/)</i>] --> |Writes Live Metrics| C[(SQLite DB 1)]
-        B[LLM Prompt Tracer<br><i>(llm_observability/)</i>] --> |Writes Trace Outputs| D[(SQLite DB 2)]
+    subgraph Data_Collection_Daemons
+        A[API_HTTP_Poller] --> |Writes Live Metrics| C[(SQLite DB 1)]
+        B[LLM_Prompt_Tracer] --> |Writes Trace Outputs| D[(SQLite DB 2)]
     end
 
-    subgraph Service Layer
-        E[FastAPI Backend Server<br><i>(backend/main.py)</i>]
+    subgraph Service_Layer
+        E[FastAPI Backend Server]
         C -.- |Reads| E
         D -.- |Reads| E
     end
 
-    subgraph Presentation Layer
-        F[React + Vite Dashboard<br><i>(frontend/)</i>]
-        E --> |JSON/REST Polling| F
+    subgraph Presentation_Layer
+        F[React Vite Dashboard]
+        E --> |JSON REST Polling| F
     end
 
     classDef daemon fill:#1f2937,stroke:#3b82f6,color:#fff;
