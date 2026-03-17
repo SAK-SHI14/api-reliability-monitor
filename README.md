@@ -1,130 +1,234 @@
 <div align="center">
 
-<h1>🚀 OmniWatch Observer Platform</h1>
+# 🔭 OmniWatch Observer Platform
 
-<p>
-  <b>An industrial-grade, unified observability platform combining real-time API health monitoring 
-  with advanced LLM drift tracking, visualized through a stunning, glassmorphic React dashboard.</b>
-</p>
+**An enterprise-grade, distributed telemetry system unifying Network API reliability monitoring and LLM observability tracing into a single, high-performance pane of glass.**
 
-<p>
-  <img src="https://img.shields.io/badge/Python-3.8%2B-blue?style=for-the-badge&logo=python&logoColor=white" />
-  <img src="https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white" />
-  <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" />
-  <img src="https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white" />
-  <img src="https://img.shields.io/badge/SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=white" />
-</p>
+<br />
+
+[![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi)](https://fastapi.tiangolo.com/)
+[![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)](https://reactjs.org/)
+[![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
+[![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)](https://www.python.org/)
+[![SQLite](https://img.shields.io/badge/sqlite-%2307405e.svg?style=for-the-badge&logo=sqlite&logoColor=white)](https://www.sqlite.org/index.html)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
+
+<br />
+
+<i>Observability is not a feature — it's a foundation.</i>
 
 </div>
 
 ---
 
+## 📖 Table of Contents
+- [Overview](#-overview)
+- [Key Features](#-key-features)
+- [Architecture & Data Flow](#-architecture--data-flow)
+- [Repository Structure](#-repository-structure)
+- [Getting Started (Local Setup)](#-getting-started-local-setup)
+- [Configuration](#-configuration)
+- [Deployment Readiness](#-deployment-readiness)
+- [Roadmap](#-roadmap)
+- [Contributing](#-contributing)
+- [License](#-license)
+
+---
+
 ## 🌐 Overview
 
-This repository has been dramatically upgraded into a **Unified Full-Stack Telemetry System**. It merges together two distinct observability domains (Network APIs and Large Language Models) into a single, blazing-fast, and visually beautiful pane of glass.
+The **OmniWatch Observer Platform** is a monolithic repository containing decoupled microservices that solve two critical modern engineering challenges simultaneously:
 
-| Module | Purpose | Tech Stack |
-|---|---|---|
-| [`api_reliability_monitor/`](./api_reliability_monitor/) | Background daemon for multi-endpoint network latency polling | Python, SQLite |
-| [`llm_observability ollama/`](./llm_observability%20ollama/) | Tracer for LLM generative responses, token speeds, and cost metrics | Python, SQLite |
-| [`backend/`](./backend/) | Centralized API combining multiple databases | FastAPI, Uvicorn |
-| [`frontend/`](./frontend/) | Premium, live-updating real-time dashboard | React, Vite, Recharts, Framer Motion |
+1. **External Dependency Monitoring**: Tracking the uptime, latency degradation, and status of third-party network APIs (e.g., GitHub, Payment Gateways, Weather APIs) your infrastructure relies on.
+2. **LLM Generative Observability**: Tracing Large Language Model responses, evaluating token generation velocities, monitoring inference costs, and detecting prompt drift in real time.
+
+By merging these disparate data streams into a centralized `FastAPI` service, the platform feeds a **blazing-fast, custom-styled React/Vite dashboard** designed with modern glassmorphism principles (zero UI framework bloat, pure CSS grid logic, and framer motion micro-animations).
 
 ---
 
-## 📸 The Dashboard in Action
+## ✨ Key Features
 
-The custom-built React frontend uses advanced CSS Grid and Vanilla CSS glassmorphism, eliminating heavy UI frameworks for maximum performance. 
-
-- **Live Latency Charts**: Undulating area charts reacting to actual internet speed variations.
-- **LLM Token Velocity**: Tracking cost and text-generation speeds across OpenAI/Anthropic mocked traces.
-- **Micro-animations**: Powered by Framer Motion.
-
-*(Insert Demo Image/GIF here)*
+- ⚡ **Real-Time Data Streaming:** Network pollers ping targets autonomously while the frontend refreshes charts without reloading the DOM.
+- 📈 **Dynamic Telemetry Visualization:** Area charts utilizing `Recharts` dynamically map fluctuating network latencies directly to the live SQLite databases.
+- 🤖 **LLM Tracing Capabilities:** Deep cost analysis, Time-To-First-Token (TTFT) metrics, and contextual breakdown of provider performance (OpenAI, Anthropic).
+- 🧩 **Modular Microservice Design:** The backend, frontend, and data collectors operate exclusively in their own processes. If the UI crashes, telemetry collection silently persists.
+- 💾 **Decentralized Persistent Storage:** Engineered on SQLite to ensure zero-configuration setup while retaining sub-millisecond write capabilities for the polling daemons.
 
 ---
 
-## ⚙️ Architecture Data Flow
+## 🏗 Architecture & Data Flow
 
-1. **The Pollers (`api_reliability_monitor/main.py`)**: Runs continuously in the background, pinging real external APIs (GitHub, JSONPlaceholder, HTTPBin) and logging their ping-time iteratively to `api_reliability_monitor/data/observability.db`.
-2. **The LLM Tracer**: Simulates or records generative AI interactions (Prompts, Latency, Token Count) and logs them to `llm_observability ollama/data/observability.db`.
-3. **The Backend (`backend/main.py`)**: A lightning-fast FastAPI server that connects to both SQLite files simultaneously and exposes unified JSON endpoints to the frontend.
-4. **The Frontend (`frontend/`)**: React hits the `/api/api-metrics` endpoint every 3 seconds, mapping the data directly into Recharts for live visual updates.
+```mermaid
+graph TD
+    subgraph Data Collection Daemons
+        A[API HTTP Poller<br><i>(api_reliability_monitor/)</i>] --> |Writes Live Metrics| C[(SQLite DB 1)]
+        B[LLM Prompt Tracer<br><i>(llm_observability/)</i>] --> |Writes Trace Outputs| D[(SQLite DB 2)]
+    end
+
+    subgraph Service Layer
+        E[FastAPI Backend Server<br><i>(backend/main.py)</i>]
+        C -.- |Reads| E
+        D -.- |Reads| E
+    end
+
+    subgraph Presentation Layer
+        F[React + Vite Dashboard<br><i>(frontend/)</i>]
+        E --> |JSON/REST Polling| F
+    end
+
+    classDef daemon fill:#1f2937,stroke:#3b82f6,color:#fff;
+    classDef db fill:#064e3b,stroke:#10b981,color:#fff;
+    classDef api fill:#4c1d95,stroke:#8b5cf6,color:#fff;
+    classDef ui fill:#0f172a,stroke:#06b6d4,color:#fff;
+    
+    class A,B daemon;
+    class C,D db;
+    class E api;
+    class F ui;
+```
 
 ---
 
-## 🚀 Quick Start Guide
+## 🗂 Repository Structure
 
-You will need three terminal windows to run the full stack locally.
+The platform implements a modular monorepo directory layout:
 
-### 1. Start the Data Pollers
+```text
+omniwatch-platform/
+│
+├── api_reliability_monitor/     # Daemon: Continuous API latency testing
+│   ├── config/                  # Polling targets and intervals 
+│   ├── src/                     # Core HTTP request engine
+│   └── main.py                  # Poller entry point
+│
+├── llm_observability ollama/    # Daemon: LLM prompt tracking & mocked generators
+│   └── mock_data.py             # Generates synthetic LLM drift data
+│
+├── backend/                     # Aggregation: The Unified API
+│   └── main.py                  # FastAPI implementation & SQLite connections
+│
+└── frontend/                    # View: Interactive Observability Dashboard
+    ├── src/                     # React components, Recharts logic
+    ├── index.css                # Custom glassmorphism variables
+    └── package.json         
+```
 
-This spins up the background worker that physically tests your API connections over the internet.
+---
+
+## 🚀 Getting Started (Local Setup)
+
+OmniWatch requires **three distinct terminal instances** to run its full microservice stack. Ensure you have Python 3.9+ and Node.js v18+ installed.
+
+### 1. Launch the Network Telemetry Poller
+This spins up the background worker that establishes the internet handshake with targeted APIs.
 
 ```bash
+# Terminal 1
 cd api_reliability_monitor
 python -m venv venv
 
-# Windows
+# Activate Virtual Env (Windows)
 .\venv\Scripts\activate
-# Mac/Linux
-source venv/bin/activate
+# (macOS/Linux)
+# source venv/bin/activate
 
 pip install -r requirements.txt
 python main.py
 ```
-*(Leave this terminal running!)*
+*(Leave this running. It will log physical pings to the console).*
 
-### 2. Start the FastAPI Backend
-
-This serves the telemetry data the background worker is collecting.
+### 2. Launch the Unified FastAPI Backend
+This exposes the database files via REST for the frontend to consume safely.
 
 ```bash
-# Open a new terminal
+# Terminal 2
 cd backend
 python -m pip install fastapi uvicorn
 python main.py
 ```
-The API is now running at `http://localhost:8000`. You can test it by visiting `http://localhost:8000/docs`.
+*The API is now running at `http://localhost:8000`. Test via Swagger UI at `http://localhost:8000/docs`.*
 
 ### 3. Launch the Premium React Dashboard
-
-This fires up the visual UI.
+This fires up the high-performance visual UI.
 
 ```bash
-# Open a third terminal
+# Terminal 3
 cd frontend
 npm install
 npm run dev
 ```
+*Navigate to the local URL provided by Vite (e.g., `http://localhost:5174`) in your browser to observe the live metrics.*
 
-Visit the URL provided by Vite (usually `http://localhost:5173` or `http://localhost:5174`) in your browser to see the live metrics streaming in!
-
-*(Optional: To inject LLM traces into the dashboard, run `python mock_data.py` inside the `llm_observability ollama` directory).*
+> 💡 **Tip:** To inject AI metrics into the dashboard's LLM row, execute `python mock_data.py` inside the `llm_observability ollama` directory in a new terminal.
 
 ---
 
-## ☁️ Deployment
+## ⚙️ Configuration
 
-This platform is ready to be deployed to the cloud! Because it's split into modular microservices, we recommend:
+To modify which external endpoints the platform monitors, navigate to `api_reliability_monitor/config/config.yaml`:
 
-- **Frontend**: Deploy the `dist` build folders to **Vercel**, **Netlify**, or **Render Static Sites**.
-- **Backend & Pollers**: Deploy to **Railway.app** using a Dockerfile, or to **Render Background Workers & Web Services**, ensuring a Persistent Disk is attached so the SQLite databases aren't erased on restart!
+```yaml
+collection:
+  interval_seconds: 5        # Global testing frequency
+  timeout_seconds: 3         # Hard timeout 
+
+  apis:
+    - name: "Stripe Production API"
+      url: "https://api.stripe.com/health"
+      method: "GET"
+    - name: "Weather Service"
+      url: "https://api.openweathermap.org/data/2.5/weather"
+      method: "GET"
+```
+*Changes to this file require a restart of the `api_reliability_monitor/main.py` daemon.*
+
+---
+
+## ☁️ Deployment Readiness
+
+Because OmniWatch separates the background polling processes from the web servers, cloud deployment requires routing distinct services.
+
+### Recommended Stack: Render.com or Railway.app
+
+- **Frontend (Static Site):**
+  - Build Command: `npm run build`
+  - Output Directory: `dist`
+  - *Note: Remember to replace `http://localhost:8000` in `App.tsx` with your production backend URL.*
+- **Backend (Web Service):**
+  - Start Command: `uvicorn main:app --host 0.0.0.0 --port $PORT`
+  - **Crucial:** Attach a Persistent Volume Disk (e.g., `/data`) to ensure SQLite `.db` files survive container restarts.
+- **Poller (Background Worker):**
+  - Start Command: `python main.py`
+  - **Crucial:** Mount the *same* Persistent Volume Disk as the backend so both instances share the exact same `observability.db` file context securely.
+
+---
+
+## 🔮 Roadmap
+
+- [ ] **Webhook Alerting Engine**: Push notifications to Slack/Discord when an API drops below 95% threshold.
+- [ ] **Docker Compose Orchestration**: Bundle the 3 microservices into a single `docker-compose.yml` for 1-click execution.
+- [ ] **PostgreSQL Migration Support**: Shift from SQLite to remote Postgres architectures for enterprise horizontal scaling.
+- [ ] **Authentication Layer**: Secure the `/backend` endpoints with JWT tokens to prevent unauthorized telemetry viewing.
 
 ---
 
 ## 🤝 Contributing
 
-Contributions are heavily encouraged! To contribute:
+Contributions make the open-source community an incredible place to learn, inspire, and create. Any improvements or integrations are **greatly appreciated**.
 
-1. **Fork** the repository
-2. Create a feature branch
-3. **Commit** your changes
-4. **Push** to your branch
-5. Open a **Pull Request**
+1. **Fork the Project**
+2. **Create your Feature Branch** (`git checkout -b feature/AmazingFeature`)
+3. **Commit your Changes** (`git commit -m 'Add some AmazingFeature'`)
+4. **Push to the Branch** (`git push origin feature/AmazingFeature`)
+5. **Open a Pull Request**
 
 ---
 
+## 📄 License
+
+Distributed under the MIT License. See `LICENSE` for more information.
+
 <div align="center">
-<i>Built for observability-first engineers.</i>
+  <br>
+  <b>Elevating engineering standards globally.</b>
 </div>
