@@ -10,6 +10,7 @@ import json
 
 import asyncio
 import threading
+import logging
 from api_reliability_monitor.main import run_monitor
 
 logging.basicConfig(level=logging.INFO)
@@ -21,16 +22,23 @@ async def lifespan(app: FastAPI):
     root_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     mock_script = os.path.join(root_dir, "llm_observability ollama", "mock_data.py")
     
-    # 1. Start the telemetry poller thread (Always Running)
-    logger.info("BOOTSTRAP: Starting background telemetry worker...")
-    thread = threading.Thread(target=run_monitor, daemon=True)
+    def run_initialization():
+        # 1. Start the telemetry poller (Blocking loop in a thread)
+        logger.info("BOOTSTRAP: Starting background telemetry worker...")
+        try:
+            # 2. Run the LLM Mock Generator first to prime the DB
+            if os.path.exists(mock_script):
+                logger.info("BOOTSTRAP: Initializing LLM Trace Mock Data...")
+                subprocess.run([sys.executable, mock_script], cwd=os.path.dirname(mock_script), check=False)
+            
+            # 3. Start the infinite monitoring loop
+            run_monitor()
+        except Exception as e:
+            logger.error(f"BOOTSTRAP ERROR: {e}")
+
+    # Start entire background logic in one non-blocking thread
+    thread = threading.Thread(target=run_initialization, daemon=True)
     thread.start()
-    
-    # 2. Run the LLM Mock Generator once to ensure DB exists (Required for UI feedback)
-    if os.path.exists(mock_script):
-        logger.info("BOOTSTRAP: Initializing LLM Trace Mock Data...")
-        # Since the folder name has a space, we run as a subprocess to be safe
-        subprocess.run([sys.executable, mock_script], cwd=os.path.dirname(mock_script))
     
     yield
     logger.info("SHUTDOWN: Stopping backend services...")
@@ -141,4 +149,6 @@ if os.path.exists(frontend_dist):
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    # Use PORT from environment for cloud deployment, default to 8000 locally
+    port = int(os.environ.get("PORT", 8000))
+    uvicorn.run(app, host="0.0.0.0", port=port)

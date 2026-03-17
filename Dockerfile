@@ -28,6 +28,6 @@ EXPOSE 8000
 # Setting Python Path so module imports work correctly
 ENV PYTHONPATH="/app"
 
-# Start backend using Uvicorn. This script has been instructed to automatically 
-# spin up the background polling daemons via subprocess on lifespan startup!
-CMD ["uvicorn", "backend.main:app", "--host", "0.0.0.0", "--port", "8000"]
+# Start backend using the unified python launcher.
+# This launcher handles dynamic $PORT allocation for Railway/Render automatically.
+CMD ["python", "-m", "backend.main"]
