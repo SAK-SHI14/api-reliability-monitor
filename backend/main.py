@@ -1,10 +1,22 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
+from contextlib import asynccontextmanager
+import subprocess
+import sys
 import sqlite3
 import os
 import json
 
-app = FastAPI(title="Unified Observability API")
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # Start the background API monitor in the same container process
+    monitor_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "api_reliability_monitor", "main.py")
+    poller = subprocess.Popen([sys.executable, monitor_path], cwd=os.path.dirname(monitor_path))
+    yield
+    poller.terminate()
+
+app = FastAPI(title="Unified Observability API", lifespan=lifespan)
 
 app.add_middleware(
     CORSMiddleware,
@@ -89,6 +101,11 @@ def get_llm_traces():
         r = dict(row)
         traces.append(r)
     return traces
+
+# Mount the React frontend
+frontend_dist = os.path.join(os.path.dirname(os.path.dirname(__file__)), "frontend", "dist")
+if os.path.exists(frontend_dist):
+    app.mount("/", StaticFiles(directory=frontend_dist, html=True), name="frontend")
 
 if __name__ == "__main__":
     import uvicorn
