@@ -17,6 +17,13 @@
 
 <i>Observability is not a feature — it's a foundation.</i>
 
+<br />
+<br />
+
+<a href="https://api-reliability-monitor-production.up.railway.app">
+  <img src="https://img.shields.io/badge/LIVE%20DEMO-🚀-brightgreen?style=for-the-badge&logo=rocket" alt="Live Demo" />
+</a>
+
 </div>
 
 ---
